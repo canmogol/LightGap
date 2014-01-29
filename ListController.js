@@ -4,21 +4,23 @@ window.onload = function () {
         mainController.goBack();
     };
     var ipAddressSpan = document.getElementById("userInformation");
-    ipAddressSpan.innerHTML = "welcome " + getStorage("userInformation");
+    ipAddressSpan.innerHTML = getStorage("loginResponseMessage") + " " +  getStorage("userInformation");
     var listContainer = document.getElementById("listContainer");
-    listContainer.addEventListener('touchstart', function(event){});
+    listContainer.addEventListener('touchstart', function (event) {
+    });
 
-    var adliyeler = JSON.parse(getStorage("adliyeler"));
-    for (var i = 0; i < adliyeler.length; i++) {
+    var items = JSON.parse(getStorage("items"));
+    for (var i = 0; i < items.length; i++) {
         var button = document.createElement('button');
         button.className = "listItem";
-        var adliye = adliyeler[i];
-        button.id = "id" + adliye.id;
-        button.adliye = adliye;
+        var item = items[i];
+        //console.log(item);
+        button.id = "id" + item.id;
+        button.item = item;
         button.addEventListener('click', function () {
-            alert("AdliyeAdi: " + this.adliye.AdliyeAdi);
+            alert("name: " + this.item.name + " id: " + this.item.id);
         }, false);
-        var linkText = document.createTextNode(adliye.AdliyeAdi);
+        var linkText = document.createTextNode(item.name);
         button.appendChild(linkText);
         listContainer.appendChild(button);
     }

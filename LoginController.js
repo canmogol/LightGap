@@ -15,7 +15,7 @@ function LoginController() {
     this.doLogin = function () {
         // first open a loading dialog, this will be removed if the user clicks button
         var handler = {
-            url: "http://voyager.innova.com.tr/unity.mobile.gateway/ServerFlowServlet?OP_NAME=doGetAdliyeler&",
+            url: "http://10.10.4.235/lg/login.php",
             method: "GET",
             async: true,
             cancelled: false,
@@ -49,9 +49,13 @@ function LoginController() {
                      mainController.loadPage("logged.html");
                      });
                      */
-
-                    putStorage("userInformation", response.message);
-                    mainController.loadPage("logged.html");
+                    if (response.isLogged == "true") {
+                        putStorage("userInformation", response.user);
+                        putStorage("loginResponseMessage", response.message);
+                        mainController.loadPage("logged.html");
+                    } else {
+                        alert("could not login, " + response.message);
+                    }
                 } catch (e) {
                     alert(e);
                 }

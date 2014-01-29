@@ -1,4 +1,4 @@
-span,div,a,li,p,h1,h2,h3,h4,h5,h6{
+span, div, a, li, p, h1, h2, h3, h4, h5, h6 {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -6,8 +6,9 @@ span,div,a,li,p,h1,h2,h3,h4,h5,h6{
     -ms-user-select: none;
     user-select: none;
 }
+
 @media all and (orientation:portrait) {
-    @-ms-viewport {
+@-ms-viewport {
         width:320px;
         user-zoom: fixed;
         max-zoom: 1;
@@ -16,7 +17,7 @@ span,div,a,li,p,h1,h2,h3,h4,h5,h6{
 }
 
 @media all and (orientation:landscape) {
-    @-ms-viewport {
+@-ms-viewport {
         width:480px;
         user-zoom: fixed;
         max-zoom: 1;
@@ -29,7 +30,7 @@ html, body {
     width: 100%;
     margin: 0px;
     padding: 0px;
-    -ms-overflow-style: none !important; 
+    -ms-overflow-style: none !important;
 }
 
 body {
@@ -39,12 +40,13 @@ body {
     background-color: #ffffff;
     color: #000000;
 }
+
 *.unselectable {
-   -moz-user-select: -moz-none;
-   -khtml-user-select: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 button.rounded {
@@ -55,7 +57,7 @@ button.rounded {
     padding: 10px 20px;
     background: -moz-linear-gradient(top, #bfc8ff 0%, #bfc8ff 25%, #5b6bbf);
     background: -webkit-gradient(linear, left top, left bottom, from(#bfc8ff), color-stop(0.25, #bfc8ff), to(#5b6bbf));
-    background:  -ms-linear-gradient(top, #bfc8ff 0%,#bfc8ff 25%,#bfc8ff 25%,#5b6bbf 100%);
+    background: -ms-linear-gradient(top, #bfc8ff 0%, #bfc8ff 25%, #bfc8ff 25%, #5b6bbf 100%);
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
     border-radius: 30px;
@@ -65,27 +67,35 @@ button.rounded {
     box-shadow: 0px 3px 11px rgba(000, 000, 000, 0.5), inset 0px 0px 1px rgba(91, 107, 191, 1);
     text-shadow: 0px -1px 0px rgba(000, 000, 000, 0.2), 0px 1px 0px rgba(255, 255, 255, 0.3);
     margin-bottom: 0.3em;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
-button.rounded:active{
+
+button.rounded:active {
     background: -moz-linear-gradient(top, #ffa9ac 0%, #c26572 25%, #d93d50);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffa9ac), color-stop(0.25, #c26572), to(#d93d50));
-    background:  -ms-linear-gradient(top, #ffa9ac 0%,#ffa9ac 25%,#ffa9ac 25%,#d93d50 100%);
+    background: -ms-linear-gradient(top, #ffa9ac 0%, #ffa9ac 25%, #ffa9ac 25%, #d93d50 100%);
 }
+
+button.rounded:focus {
+    outline: none;
+}
+
 div#topBar {
-    padding-top:1em;
+    padding-top: 1em;
     text-align: left;
     width: 100%;
     height: 3em;
     background: url("logo.png") no-repeat rgb(14, 33, 61);
-    background-position:left bottom;
+    background-position: left bottom;
 }
+
 div#mainContainer {
     text-align: center;
     padding: 1em;
 }
+
 div#footer {
     text-align: left;
     width: 100%;
@@ -93,7 +103,7 @@ div#footer {
     background: rgb(82, 131, 185);
 }
 
-span#userInformation{
+span#userInformation {
     display: block;
     padding: 1em;
     text-align: center;

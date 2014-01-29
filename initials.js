@@ -27,15 +27,15 @@ if (!_fastClickAttached) {
     console.debug(_fastClickException);
 }
 
-    // define storage funtions
+// define storage funtions
 try {
     function putStorage(key, value) {
         localStorage.setItem(key, value);
-    };
+    }
 
     function getStorage(key) {
         return localStorage.getItem(key);
-    };
+    }
 } catch (e) {
     console.debug("exception occured while setting storage functions, e:" + e);
 }
@@ -128,11 +128,15 @@ function sendRequest(handler/*handler object with example signature below*/) {
             } else if (req.readyState == 3) {
                 handler.processingRequest();
             } else if (req.readyState == 4) {
-                var response = req.response;
-                if (req != null && req != undefined && req.response != null && req.response != undefined) {
-                    if (!(req.response instanceof Object)) {
-                        response = JSON.parse(req.response);
+                try {
+                    var response = req.response;
+                    if (req != null && req != undefined && req.response != null && req.response != undefined) {
+                        if (!(req.response instanceof Object)) {
+                            response = JSON.parse(req.response);
+                        }
                     }
+                } catch (e) {
+                    console.log("exception occured while returning response, e: " + e);
                 }
                 handler.requestFinishedResponseReady(req, response);
             }

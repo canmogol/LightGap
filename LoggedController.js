@@ -1,11 +1,11 @@
 window.onload = function () {
     var ipAddressSpan = document.getElementById("userInformation");
-    ipAddressSpan.innerHTML = "welcome " + getStorage("userInformation");
+    ipAddressSpan.innerHTML = getStorage("loginResponseMessage") + " " + getStorage("userInformation");
     var listExampleButton = document.getElementById("listExampleButton");
     listExampleButton.onclick = function () {
         // first open a loading dialog, this will be removed if the user clicks button
         var handler = {
-            url: "http://voyager.innova.com.tr/unity.mobile.gateway/ServerFlowServlet?OP_NAME=doGetAdliyeler&TakipDosyaNo=2010&TakipId=20101&SO_USER_NAME=app-innova&SO_PASS_WORD=q5F1sZlVT&lat=0&long=0#",
+            url: "http://10.10.4.235/lg/list.php",
             method: "GET",
             async: true,
             cancelled: false,
@@ -33,9 +33,9 @@ window.onload = function () {
                 //console.log("CALL CALLBACK! requestFinishedResponseReady, cancelled: " + handler.cancelled);
                 Alerts.removeAllAlerts();
                 try {
-                    var adliyeler = response.response.sehirler[0].adliyeler;
-                    var adliyelerString = JSON.stringify(adliyeler);
-                    putStorage("adliyeler", adliyelerString);
+                    var items = response;
+                    console.log(items);
+                    putStorage("items", JSON.stringify(items));
                     mainController.loadPage("list.html");
                 } catch (e) {
                     alert(e);
