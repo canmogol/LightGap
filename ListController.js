@@ -1,6 +1,6 @@
 function ListController() {
 
-    this.init = function(){
+    this.init = function () {
         mainController.loadPage("listPage");
 
         var backButton = document.getElementById("backButtonList");
@@ -8,10 +8,10 @@ function ListController() {
             mainController.goBack();
         };
         var ipAddressSpan = document.getElementById("userInformation");
-        ipAddressSpan.innerHTML = getStorage("loginResponseMessage") + " " +  getStorage("userInformation");
+        ipAddressSpan.innerHTML = Store.getStorage("loginResponseMessage") + " " + Store.getStorage("userInformation");
         var listContainer = document.getElementById("listContainer");
         listContainer.innerHTML = "";
-        var items = JSON.parse(getStorage("items"));
+        var items = JSON.parse(Store.getStorage("items"));
         for (var i = 0; i < items.length; i++) {
             var button = document.createElement('button');
             button.className = "listItem";
@@ -26,6 +26,7 @@ function ListController() {
             button.appendChild(linkText);
             listContainer.appendChild(button);
         }
+        listContainer.scrollTop = 0;
     };
 
 }

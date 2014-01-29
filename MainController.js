@@ -2,8 +2,8 @@
 function MainController() {
 
     this.getPageStack = function () {
-        if (getStorage("pageStackString").trim().length > 0) {
-            var pageStackString = getStorage("pageStackString");
+        if (Store.getStorage("pageStackString").trim().length > 0) {
+            var pageStackString = Store.getStorage("pageStackString");
             return pageStackString.split(",")
         } else {
             return [];
@@ -18,7 +18,7 @@ function MainController() {
         if (pageStackString.length > 0 && pageStackString.substring(pageStackString.length - 1) == ",") {
             pageStackString = pageStackString.substring(0, pageStackString.length - 1)
         }
-        putStorage("pageStackString", pageStackString);
+        Store.putStorage("pageStackString", pageStackString);
     };
 
     this.addToPageStack = function (page) {

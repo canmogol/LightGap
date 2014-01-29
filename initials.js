@@ -27,25 +27,6 @@ if (!_fastClickAttached) {
     console.debug(_fastClickException);
 }
 
-// define storage funtions
-try {
-
-    function putStorage(key, value) {
-        localStorage.setItem(key, value);
-    }
-
-    function getStorage(key) {
-        return localStorage.getItem(key);
-    }
-
-    function clearStorage() {
-        localStorage.clear();
-    }
-
-} catch (e) {
-    console.debug("exception occured while setting storage functions, e:" + e);
-}
-
 // ajax request
 function sendRequest(handler/*handler object with example signature below*/) {
     /*

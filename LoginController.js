@@ -17,7 +17,7 @@ function LoginController() {
     this.doLogin = function () {
         // first open a loading dialog, this will be removed if the user clicks button
         var handler = {
-            url: "http://10.10.4.235/lg/login.php",
+            url: Statics.SERVER_APP_URL + "login.php",
             method: "GET",
             async: true,
             cancelled: false,
@@ -46,8 +46,8 @@ function LoginController() {
                 Alerts.removeAllAlerts();
                 try {
                     if (response.isLogged == "true") {
-                        putStorage("userInformation", response.user);
-                        putStorage("loginResponseMessage", response.message);
+                        Store.putStorage("userInformation", response.user);
+                        Store.putStorage("loginResponseMessage", response.message);
                         var loggedController = new LoggedController();
                         loggedController.init();
                     } else {

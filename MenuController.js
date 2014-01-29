@@ -4,16 +4,27 @@ window.onload = function () {
 };
 
 function MenuController() {
+
     this.init = function () {
-        putStorage("pageStackString", "menuPage");
+        // check for development and testing modes
+        this.manageApplicationMode();
+
+        // clear storage and handle buttons
+        Store.putStorage("pageStackString", "menuPage");
         var screenLoginButton = document.getElementById("screenLoginButton");
         screenLoginButton.onclick = function () {
             var loginController = new LoginController();
             loginController.init();
         };
-        var newsButton = document.getElementById("newsButton");
-        newsButton.onclick = function () {
-            document.location.href = "http://10.10.4.235/lg/index.html?" + Math.random();
+    };
+
+    this.manageApplicationMode = function () {
+        if (Statics.APP_MODE == Statics.APP_MODES.DEV) {
+            var developmentController = new DevelopmentController();
+            developmentController.init();
+        } else if (Statics.APP_MODE == Statics.APP_MODES.TEST) {
+            var testingController = new TestingController();
+            testingController.init();
         }
     };
 }

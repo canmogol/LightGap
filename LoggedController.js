@@ -4,13 +4,13 @@ function LoggedController() {
         mainController.loadPage("loggedPage");
 
         var ipAddressSpan = document.getElementById("userInformation");
-        ipAddressSpan.innerHTML = getStorage("loginResponseMessage") + " " + getStorage("userInformation");
+        ipAddressSpan.innerHTML = Store.getStorage("loginResponseMessage") + " " + Store.getStorage("userInformation");
 
         var listExampleButton = document.getElementById("listExampleButton");
         listExampleButton.onclick = function () {
             // first open a loading dialog, this will be removed if the user clicks button
             var handler = {
-                url: "http://10.10.4.235/lg/list.php",
+                url: Statics.SERVER_APP_URL + "list.php",
                 method: "GET",
                 async: true,
                 cancelled: false,
@@ -38,7 +38,7 @@ function LoggedController() {
                     //console.log("CALL CALLBACK! requestFinishedResponseReady, cancelled: " + handler.cancelled);
                     Alerts.removeAllAlerts();
                     try {
-                        putStorage("items", JSON.stringify(response));
+                        Store.putStorage("items", JSON.stringify(response));
                         var listController = new ListController();
                         listController.init();
                     } catch (e) {
@@ -59,8 +59,8 @@ function LoggedController() {
                 if (buttonIndex == 1) {
                     //console.log("logout cancelled");
                 } else if (buttonText == "ok") {
-                    clearStorage();
-                    putStorage("pageStackString", "menuPage");
+                    Store.clearStorage();
+                    Store.putStorage("pageStackString", "menuPage");
                     document.getElementById("loggedPage").style.display = "none";
                     document.getElementById("menuPage").style.display = "block";
                     document.getElementById("userInformation").innerHTML = "";
