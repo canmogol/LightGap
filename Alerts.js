@@ -106,13 +106,12 @@
             return alertTextsReturn;
         };
 
-        this.okClicked = function (text, image, callback) {
-            //console.debug("ok clicked on message: " + text);
+        this.okClicked = function (callback, buttonIndex, buttonText) {
             alertUI.remove();
             isAlertVisible = false;
             if (callback != null && callback != undefined) {
                 try {
-                    callback();
+                    callback(buttonIndex, buttonText);
                 } catch (e) {
                     console.log("could not run the callback: " + callback);
                 }
@@ -249,6 +248,20 @@
          private methods below
          */
 
+        function createButton(callback, buttonIndex, buttonText) {
+            // set the listener to button
+            var button = document.createElement('a');
+            button.id = alertDialogButtonID;
+            button.addEventListener('click', function () {
+                alertListener.okClicked(callback, buttonIndex, buttonText);
+            }, false);
+            button.title = buttonText;
+            button.href = "#";
+            var linkText = document.createTextNode(buttonText);
+            button.appendChild(linkText);
+            return button;
+        }
+
         function renderHtml() {
             try {
                 var div = document.getElementById(alertTransparentID);
@@ -289,7 +302,7 @@
                         var divLoading = document.createElement('div');
                         divLoading.innerHTML = '<div id="noTrespassingOuterBarG"><div id="noTrespassingFrontBarG" class="noTrespassingAnimationG"><div class="noTrespassingBarLineG"></div><div class="noTrespassingBarLineG"></div><div class="noTrespassingBarLineG"></div><div class="noTrespassingBarLineG"></div><div class="noTrespassingBarLineG"></div><div class="noTrespassingBarLineG"></div></div></div>';
                         divDialog.appendChild(divLoading);
-                    }else if (alertImage === "LOADING-CIRCLE") {
+                    } else if (alertImage === "LOADING-CIRCLE") {
                         var divLoading = document.createElement('div');
                         divLoading.innerHTML = '<div id="floatingCirclesG"><div class="f_circleG" id="frotateG_01"></div><div class="f_circleG" id="frotateG_02"></div><div class="f_circleG" id="frotateG_03"></div><div class="f_circleG" id="frotateG_04"></div><div class="f_circleG" id="frotateG_05"></div><div class="f_circleG" id="frotateG_06"></div><div class="f_circleG" id="frotateG_07"></div><div class="f_circleG" id="frotateG_08"></div></div>';
                         divDialog.appendChild(divLoading);
@@ -301,22 +314,18 @@
                     }
                 }
 
-                var buttonText = alertButtonTextOK;
                 if (alertButtonText != null && alertButtonText != undefined) {
-                    buttonText = alertButtonText;
+                    if (alertButtonText instanceof Array) {
+                        for (var i = 0; i < alertButtonText.length; i++) {
+                            var button  = createButton(alertCallBack, i, alertButtonText[i]);
+                            divDialog.appendChild(button);
+                        }
+                    } else {
+                        divDialog.appendChild(createButton(alertCallBack, 0, alertButtonText));
+                    }
+                }else{
+                    divDialog.appendChild(createButton(alertCallBack, 0, alertButtonTextOK));
                 }
-
-                // set the listener to button
-                var button = document.createElement('a');
-                button.id = alertDialogButtonID;
-                button.addEventListener('click', function () {
-                    alertListener.okClicked(alertText, alertImage, alertCallBack);
-                }, false);
-                button.title = buttonText;
-                button.href = "#";
-                var linkText = document.createTextNode(buttonText);
-                button.appendChild(linkText);
-                divDialog.appendChild(button);
 
                 // append this div to document
                 document.body.appendChild(div);

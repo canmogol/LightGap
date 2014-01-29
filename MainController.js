@@ -65,7 +65,7 @@ function MainController() {
         this.addToPageStack(page);
         //console.log("loadPage getPageStack: " + this.getPageStack());
         try {
-            window.location.href = page;
+            window.location.href = page + "?" + Math.random();
         } catch (e) {
             document.location = "file:///android_asset/" + page;
         }

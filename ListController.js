@@ -6,9 +6,6 @@ window.onload = function () {
     var ipAddressSpan = document.getElementById("userInformation");
     ipAddressSpan.innerHTML = getStorage("loginResponseMessage") + " " +  getStorage("userInformation");
     var listContainer = document.getElementById("listContainer");
-    listContainer.addEventListener('touchstart', function (event) {
-    });
-
     var items = JSON.parse(getStorage("items"));
     for (var i = 0; i < items.length; i++) {
         var button = document.createElement('button');

@@ -42,8 +42,8 @@ window.onload = function () {
                 }
             }
         };
-        alert("Getting List", "LOADING-CIRCLE", function () {
-            handler.cancelled = true;
+        alert("Getting List", "LOADING-CIRCLE", function (buttonIndex, buttonText) {
+                handler.cancelled = true;
         }, "cancel", null);
         sendRequest(handler);
 
@@ -51,13 +51,13 @@ window.onload = function () {
 
     var logoutButton = document.getElementById("logoutButton");
     logoutButton.onclick = function () {
-        //alert("see you later :)");
-        /*
-         , null, function () {
-         mainController.logout();
-         });
-         */
-        mainController.logout();
+        alert("Want to logout?", null, function (buttonIndex, buttonText) {
+            if (buttonIndex == 1) {
+                console.log("logout cancelled");
+            } else if (buttonText == "ok") {
+                mainController.logout();
+            }
+        }, ["ok", "cancel"], null);
     };
 };
 
