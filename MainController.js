@@ -3,7 +3,6 @@ function MainController() {
 
     this.getPageStack = function () {
         if (getStorage("pageStackString").trim().length > 0) {
-
             var pageStackString = getStorage("pageStackString");
             return pageStackString.split(",")
         } else {
@@ -46,28 +45,29 @@ function MainController() {
     };
 
     this.goBack = function () {
-        // current page, something like "login.html"
         if (this.getPageStack().length > 1) {
             var currentPage = this.popFromPageStack();
+            document.getElementById(currentPage).style.display = "none";
             var pageToLoad = this.popFromPageStack();
+            document.getElementById(pageToLoad).style.display = "block";
             this.loadPage(pageToLoad);
         } else {
-            //console.debug("trying to go back but this is the last page! will do nothing.");
+            console.debug("trying to go back but this is the last page! will do nothing.");
         }
     };
 
-    this.logout = function () {
-        putStorage("pageStackString", "menu.html");
-        this.loadPage("menu.html");
-    };
-
     this.loadPage = function (page) {
-        this.addToPageStack(page);
-        //console.log("loadPage getPageStack: " + this.getPageStack());
         try {
-            window.location.href = page + "?" + Math.random();
+            var pages = this.getPageStack();
+            if (pages.length > 0) {
+                var pageId = pages[pages.length - 1];
+                var pageContainer = document.getElementById(pageId);
+                pageContainer.style.display = "none";
+            }
+            document.getElementById(page).style.display = "block";
+            this.addToPageStack(page);
         } catch (e) {
-            document.location = "file:///android_asset/" + page;
+            console.debug("exception occured while displaying new page, e: " + e);
         }
     };
 }

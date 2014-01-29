@@ -1,16 +1,18 @@
-window.onload = function () {
-    var backButton = document.getElementById("backButton");
-    backButton.onclick = function () {
-        mainController.goBack();
-    }
-    var loginButton = document.getElementById("loginButton");
-    loginButton.onclick = function () {
-        var loginController = new LoginController();
-        loginController.validate();
-    }
-};
-
 function LoginController() {
+
+    this.init = function () {
+        mainController.loadPage("loginPage");
+
+        var loginController = this;
+        var backButton = document.getElementById("backButtonLogin");
+        backButton.onclick = function () {
+            mainController.goBack();
+        };
+        var loginButton = document.getElementById("loginButton");
+        loginButton.onclick = function () {
+            loginController.validate();
+        };
+    };
 
     this.doLogin = function () {
         // first open a loading dialog, this will be removed if the user clicks button
@@ -43,16 +45,11 @@ function LoginController() {
                 //console.log("CALL CALLBACK! requestFinishedResponseReady, cancelled: " + handler.cancelled);
                 Alerts.removeAllAlerts();
                 try {
-                    /*
-                     var response = JSON.parse(req.response);
-                     alert(response.ip, null, function () {
-                     mainController.loadPage("logged.html");
-                     });
-                     */
                     if (response.isLogged == "true") {
                         putStorage("userInformation", response.user);
                         putStorage("loginResponseMessage", response.message);
-                        mainController.loadPage("logged.html");
+                        var loggedController = new LoggedController();
+                        loggedController.init();
                     } else {
                         alert("could not login, " + response.message);
                     }

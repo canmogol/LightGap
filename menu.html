@@ -12,6 +12,9 @@
     <link rel="stylesheet" type="text/css" href="app.css"/>
     <!-- page css -->
     <link rel="stylesheet" type="text/css" href="menu.css"/>
+    <link rel="stylesheet" type="text/css" href="login.css"/>
+    <link rel="stylesheet" type="text/css" href="logged.css"/>
+    <link rel="stylesheet" type="text/css" href="list.css"/>
 
     <!-- project level javascript -->
     <script type='text/javascript' src='Prototypes.js' charset="UTF-8"></script>
@@ -24,16 +27,46 @@
 <body>
 <div id="topBar">
 </div>
-<div id="mainContainer">
+<span id="userInformation"></span>
+
+<div id="menuPage">
     <button type="button" class="rounded" name="screenLoginButton" id="screenLoginButton">Students</button>
     <button type="button" class="rounded" name="placesButton" id="placesButton">Places</button>
-    <button type="button" class="rounded">News</button>
-    <button type="button" class="rounded">Events</button>
+    <button type="button" class="rounded" name="newsButton" id="newsButton">Reload</button>
     <button type="button" class="rounded">Transport</button>
     <button type="button" class="rounded">Feedback</button>
     <button type="button" class="rounded">About</button>
 </div>
+<div id="loginPage" style="display: none">
+    <div id="loginContainer">
+        <div class="form-input">
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" value="asd"/>
+        </div>
+        <div class="form-input">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" value="123"/>
+        </div>
+        <button type="button" class="rounded" name="loginButton" id="loginButton">login</button>
+        <button type="button" class="rounded" name="backButton" id="backButtonLogin">back</button>
+    </div>
+</div>
+<div id="loggedPage" style="display: none">
+    <button type="button" class="rounded" name="listExampleButton" id="listExampleButton">List Example</button>
+    <button type="button" class="rounded" name="">menu 2</button>
+    <button type="button" class="rounded" name="">menu 3</button>
+    <button type="button" class="rounded" name="logoutButton" id="logoutButton">logout</button>
+</div>
+<div id="listPage" style="display: none">
+    <div id="listContainer"></div>
+    <br>
+    <button type="button" class="rounded" name="backButton" id="backButtonList">back</button>
+</div>
+
 <!-- page specific javascript -->
 <script type="text/javascript" src="MenuController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="LoginController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="LoggedController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="ListController.js" charset="UTF-8"></script>
 </body>
 </html>

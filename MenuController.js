@@ -1,23 +1,19 @@
 window.onload = function () {
     var menuController = new MenuController();
-    var screenLoginButton = document.getElementById("screenLoginButton");
-    screenLoginButton.onclick = function () {
-        /*
-        alert("loading...", "LOADING", function () {
-            alert("loading...", "LOADING-CIRCLE");
-        }, "cancel", null);
-        alert("first one");
-        alert("second one");
-        alert("click me", null, function () {
-            mainController.loadPage("login.html");
-        }, "tamam", "Warning!");
-         */
-        mainController.loadPage("login.html");
-    }
+    menuController.init();
 };
 
 function MenuController() {
-    putStorage("pageStackString", "menu.html");
-    //console.log("getStorage(pageStackString): " + getStorage("pageStackString"));
-    
+    this.init = function () {
+        putStorage("pageStackString", "menuPage");
+        var screenLoginButton = document.getElementById("screenLoginButton");
+        screenLoginButton.onclick = function () {
+            var loginController = new LoginController();
+            loginController.init();
+        };
+        var newsButton = document.getElementById("newsButton");
+        newsButton.onclick = function () {
+            document.location.href = "http://10.10.4.235/lg/index.html?" + Math.random();
+        }
+    };
 }

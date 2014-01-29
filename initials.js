@@ -29,6 +29,7 @@ if (!_fastClickAttached) {
 
 // define storage funtions
 try {
+
     function putStorage(key, value) {
         localStorage.setItem(key, value);
     }
@@ -36,6 +37,11 @@ try {
     function getStorage(key) {
         return localStorage.getItem(key);
     }
+
+    function clearStorage() {
+        localStorage.clear();
+    }
+
 } catch (e) {
     console.debug("exception occured while setting storage functions, e:" + e);
 }
@@ -128,17 +134,28 @@ function sendRequest(handler/*handler object with example signature below*/) {
             } else if (req.readyState == 3) {
                 handler.processingRequest();
             } else if (req.readyState == 4) {
-                try {
-                    var response = req.response;
-                    if (req != null && req != undefined && req.response != null && req.response != undefined) {
-                        if (!(req.response instanceof Object)) {
-                            response = JSON.parse(req.response);
-                        }
+                if (req != null && req != undefined) {
+                    var response = null;
+                    if (req.response != null && req.response != undefined) {
+                        response = req.response;
+                    } else if (req.responseText != null && req.responseText != undefined) {
+                        response = req.responseText;
+                    } else {
+                        handler.error("response and responseText empty!");
                     }
-                } catch (e) {
-                    console.log("exception occured while returning response, e: " + e);
+                    if (response != null) {
+                        try {
+                            if (!(req.response instanceof Object)) {
+                                response = JSON.parse(response);
+                            }
+                        } catch (e) {
+                            console.log("exception occured while returning response, e: " + e);
+                        }
+                        handler.requestFinishedResponseReady(req, response);
+                    }
+                } else {
+                    handler.error("req is not defined!");
                 }
-                handler.requestFinishedResponseReady(req, response);
             }
         }
     };
