@@ -57,8 +57,8 @@ function MainController() {
     };
 
     this.logout = function () {
-        putStorage("pageStackString", "index.html");
-        this.loadPage("index.html");
+        putStorage("pageStackString", "menu.html");
+        this.loadPage("menu.html");
     };
 
     this.loadPage = function (page) {

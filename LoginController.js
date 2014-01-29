@@ -61,7 +61,7 @@ function LoginController() {
                 }
             }
         };
-        alert("loading...", "LOADING-CIRCLE", function () {
+        alert("Logging in", "LOADING-CIRCLE", function () {
             handler.cancelled = true;
         }, "cancel", null);
         sendRequest(handler);

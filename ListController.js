@@ -18,7 +18,7 @@ window.onload = function () {
         button.id = "id" + item.id;
         button.item = item;
         button.addEventListener('click', function () {
-            alert("name: " + this.item.name + " id: " + this.item.id);
+            alert(this.item.id + ", " + this.item.name);
         }, false);
         var linkText = document.createTextNode(item.name);
         button.appendChild(linkText);

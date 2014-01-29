@@ -17,7 +17,7 @@ window.onload = function () {
 };
 
 function MenuController() {
-    putStorage("pageStackString", "index.html");
+    putStorage("pageStackString", "menu.html");
     //console.log("getStorage(pageStackString): " + getStorage("pageStackString"));
     
 }

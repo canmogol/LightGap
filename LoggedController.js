@@ -42,7 +42,7 @@ window.onload = function () {
                 }
             }
         };
-        alert("loading...", "LOADING", function () {
+        alert("Getting List", "LOADING-CIRCLE", function () {
             handler.cancelled = true;
         }, "cancel", null);
         sendRequest(handler);
