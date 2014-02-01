@@ -16,6 +16,10 @@ function MenuController() {
             var loginController = new LoginController();
             loginController.init();
         };
+        var screenPlacesButton = document.getElementById("screenPlacesButton");
+        screenPlacesButton.onclick = function () {
+            alert("places");
+        };
     };
 
     this.manageApplicationMode = function () {

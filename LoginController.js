@@ -51,7 +51,7 @@ function LoginController() {
                         var loggedController = new LoggedController();
                         loggedController.init();
                     } else {
-                        alert("could not login, " + response.message);
+                        alert("could not login, message: " + response.message);
                     }
                 } catch (e) {
                     alert(e);
