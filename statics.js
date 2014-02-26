@@ -5,5 +5,5 @@ Statics = {
         PROD: "PROD"
     },
     APP_MODE: "DEV",
-    SERVER_APP_URL: "http://10.10.4.235/lg/"
+    SERVER_APP_URL: "http://localhost/lg/"
 };
