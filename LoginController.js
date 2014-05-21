@@ -16,7 +16,10 @@ function LoginController() {
 
     this.doLogin = function () {
         // first open a loading dialog, this will be removed if the user clicks button
-        var handler = {
+        alert("Logging in", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
+            handler.cancelled = true;
+        }, "cancel", null);
+        var requestHandler = {
             url: Statics.SERVER_APP_URL + "login.php",
             method: "GET",
             async: true,
@@ -58,10 +61,7 @@ function LoginController() {
                 }
             }
         };
-        alert("Logging in", "LOADING-CIRCLE", function (buttonIndex, buttonText) {
-            handler.cancelled = true;
-        }, "cancel", null);
-        sendRequest(handler);
+        sendRequest(requestHandler);
     };
 
     this.validate = function () {

@@ -107,14 +107,15 @@ function sendRequest(handler/*handler object with example signature below*/) {
             }
         } else {
             if (req.readyState == 0) {
-                handler.requestNotInitialized();
+                handler.requestNotInitialized(); //0	UNSENT	open() has not been called yet.
             } else if (req.readyState == 1) {
-                handler.serverConnectionEstablished();
+                handler.serverConnectionEstablished(); //1	OPENED	send() has not been called yet.
             } else if (req.readyState == 2) {
-                handler.requestReceived();
+                handler.requestReceived(); //2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
             } else if (req.readyState == 3) {
-                handler.processingRequest();
+                handler.processingRequest(); //3	LOADING	Downloading; responseText holds partial data.
             } else if (req.readyState == 4) {
+                // 4	DONE	The operation is complete.
                 if (req != null && req != undefined) {
                     var response = null;
                     if (req.response != null && req.response != undefined) {
@@ -130,7 +131,7 @@ function sendRequest(handler/*handler object with example signature below*/) {
                                 response = JSON.parse(response);
                             }
                         } catch (e) {
-                            console.log("exception occured while returning response, e: " + e);
+                            console.log("exception occurred while returning response, e: " + e);
                         }
                         handler.requestFinishedResponseReady(req, response);
                     }

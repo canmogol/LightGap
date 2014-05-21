@@ -46,7 +46,7 @@ function LoggedController() {
                     }
                 }
             };
-            alert("Getting List", "LOADING-CIRCLE", function (buttonIndex, buttonText) {
+            alert("Getting List", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
                 handler.cancelled = true;
             }, "cancel", null);
             sendRequest(handler);
