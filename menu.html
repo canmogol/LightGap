@@ -12,23 +12,23 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <!-- project level css -->
-    <link rel="stylesheet" type="text/css" href="reset.css"/>
-    <link rel="stylesheet" type="text/css" href="alerts.css"/>
-    <link rel="stylesheet" type="text/css" href="app.css"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/alerts.css"/>
+    <link rel="stylesheet" type="text/css" href="css/app.css"/>
     <!-- page css -->
-    <link rel="stylesheet" type="text/css" href="menu.css"/>
-    <link rel="stylesheet" type="text/css" href="login.css"/>
-    <link rel="stylesheet" type="text/css" href="logged.css"/>
-    <link rel="stylesheet" type="text/css" href="list.css"/>
+    <link rel="stylesheet" type="text/css" href="css/menu.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="css/logged.css"/>
+    <link rel="stylesheet" type="text/css" href="css/list.css"/>
 
     <!-- project level javascript -->
-    <script type='text/javascript' src='Prototypes.js' charset="UTF-8"></script>
-    <script type='text/javascript' src='Alerts.js' charset="UTF-8"></script>
-    <script type='application/javascript' src='fastclick.0.6.10.min.js'></script>
-    <script type="text/javascript" src="initials.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="store.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="statics.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="MainController.js" charset="UTF-8"></script>
+    <script type='text/javascript' src='js/Prototypes.js' charset="UTF-8"></script>
+    <script type='text/javascript' src='js/Alerts.js' charset="UTF-8"></script>
+    <script type='application/javascript' src='js/fastclick.0.6.10.min.js'></script>
+    <script type="text/javascript" src="js/initials.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/store.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/statics.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/MainController.js" charset="UTF-8"></script>
 
 </head>
 <body>
@@ -40,7 +40,7 @@
 <div id="menuPage">
     <button type="button" class="rounded" name="screenLoginButton" id="screenLoginButton">Students</button>
     <button type="button" class="rounded" name="screenPlacesButton" id="screenPlacesButton">Places</button>
-    <button type="button" class="rounded">News</button>
+    <button type="button" class="rounded" name="screenNewsButton" id="screenNewsButton">News</button>
     <button type="button" class="rounded">Transport</button>
     <button type="button" class="rounded">Feedback</button>
     <button type="button" class="rounded">About</button>
@@ -72,13 +72,15 @@
 </div>
 
 <!-- page specific javascript -->
-<script type="text/javascript" src="MenuController.js" charset="UTF-8"></script>
-<script type="text/javascript" src="LoginController.js" charset="UTF-8"></script>
-<script type="text/javascript" src="LoggedController.js" charset="UTF-8"></script>
-<script type="text/javascript" src="ListController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/BaseController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/MenuController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/LoginController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/NewsController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/LoggedController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/ListController.js" charset="UTF-8"></script>
 <!-- development and testing related controllers -->
-<script type="text/javascript" src="DevelopmentController.js" charset="UTF-8"></script>
-<script type="text/javascript" src="TestingController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/DevelopmentController.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/TestingController.js" charset="UTF-8"></script>
 
 </body>
 </html>
