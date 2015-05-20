@@ -1,5 +1,7 @@
 function LoggedController() {
 
+    var mainController = MainController.getInstance();
+
     this.init = function () {
         mainController.loadPage("loggedPage");
 
@@ -36,7 +38,7 @@ function LoggedController() {
                 },
                 requestFinishedResponseReady: function (request, response) {
                     //console.log("CALL CALLBACK! requestFinishedResponseReady, cancelled: " + handler.cancelled);
-                    Alerts.removeAllAlerts();
+                    Alert.removeAllAlerts();
                     try {
                         Store.putStorage("items", JSON.stringify(response));
                         var listController = new ListController();
@@ -46,10 +48,10 @@ function LoggedController() {
                     }
                 }
             };
-            alert("Getting List", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
+            alert("Getting List", Alert.LOADING_CIRCLE, function (buttonIndex, buttonText) {
                 handler.cancelled = true;
             }, "cancel", null);
-            sendRequest(handler);
+            Request.send(handler);
 
         };
 

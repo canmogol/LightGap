@@ -1,5 +1,7 @@
 function LoginController() {
 
+    var mainController = MainController.getInstance();
+
     this.init = function () {
         mainController.loadPage("loginPage");
 
@@ -16,9 +18,6 @@ function LoginController() {
 
     this.doLogin = function () {
         // first open a loading dialog, this will be removed if the user clicks button
-        alert("Logging in", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
-            handler.cancelled = true;
-        }, "cancel", null);
         var requestHandler = {
             url: Statics.SERVER_APP_URL + "login.php",
             method: "GET",
@@ -46,7 +45,7 @@ function LoginController() {
             },
             requestFinishedResponseReady: function (request, response) {
                 //console.log("CALL CALLBACK! requestFinishedResponseReady, cancelled: " + handler.cancelled);
-                Alerts.removeAllAlerts();
+                Alert.removeAllAlerts();
                 try {
                     if (response.isLogged == "true") {
                         Store.putStorage("userInformation", response.user);
@@ -61,7 +60,10 @@ function LoginController() {
                 }
             }
         };
-        sendRequest(requestHandler);
+        alert("Logging in", Alert.LOADING_CIRCLE, function (buttonIndex, buttonText) {
+            requestHandler.cancelled = true;
+        }, "cancel", null);
+        Request.send(requestHandler);
     };
 
     this.validate = function () {

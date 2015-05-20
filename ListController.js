@@ -1,5 +1,7 @@
 function ListController() {
 
+    var mainController = MainController.getInstance();
+
     this.init = function () {
         mainController.loadPage("listPage");
 
