@@ -1,23 +1,27 @@
 function LoginController() {
 
+    // extend BaseController
+    this.prototype = new BaseController();
+
+    // private field
     var mainController = MainController.getInstance();
 
-    this.init = function () {
-        mainController.loadPage("loginPage");
-
-        var loginController = this;
-        var backButton = document.getElementById("backButtonLogin");
-        backButton.onclick = function () {
-            mainController.goBack();
-        };
-        var loginButton = document.getElementById("loginButton");
-        loginButton.onclick = function () {
-            loginController.validate();
-        };
+    // public method
+    this.publicMethod = function () {
+        console.log("public method called");
     };
 
-    this.doLogin = function () {
+    // public method
+    this.otherPublicMethod = function () {
+        console.log("another public method called");
+    };
+
+    // private method
+    function doLogin() {
         // first open a loading dialog, this will be removed if the user clicks button
+        alert("Logging in", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
+            handler.cancelled = true;
+        }, "cancel", null);
         var requestHandler = {
             url: Statics.SERVER_APP_URL + "login.php",
             method: "GET",
@@ -45,7 +49,7 @@ function LoginController() {
             },
             requestFinishedResponseReady: function (request, response) {
                 //console.log("CALL CALLBACK! requestFinishedResponseReady, cancelled: " + handler.cancelled);
-                Alert.removeAllAlerts();
+                Alerts.removeAllAlerts();
                 try {
                     if (response.isLogged == "true") {
                         Store.putStorage("userInformation", response.user);
@@ -60,24 +64,37 @@ function LoginController() {
                 }
             }
         };
-        alert("Logging in", Alert.LOADING_CIRCLE, function (buttonIndex, buttonText) {
-            requestHandler.cancelled = true;
-        }, "cancel", null);
         Request.send(requestHandler);
-    };
+    }
 
-    this.validate = function () {
+    // private method
+    function validate() {
         try {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
             if (username.trim().length > 0 && password.trim().length > 0) {
-                this.doLogin();
+                doLogin();
             } else {
                 alert(tr("username and password cannot be empty"));
             }
         } catch (e) {
             console.debug("exception while executing function, e: " + e);
         }
-    };
+    }
+
+    // constructor
+    (function (controller) {
+        controller.publicMethod();
+        mainController.loadPage("loginPage");
+
+        var backButton = document.getElementById("backButtonLogin");
+        backButton.onclick = function () {
+            mainController.goBack();
+        };
+        var loginButton = document.getElementById("loginButton");
+        loginButton.onclick = function () {
+            validate();
+        };
+    })(this);
 
 }

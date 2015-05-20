@@ -5,10 +5,10 @@
     ////////////////////////////////
 
     try {
-        // add this "Alert" object to the parent
-        parentObject.Alert = this;
-        parentObject.Alert.LOADING_CIRCLE = "LOADING-CIRCLE";
-        parentObject.Alert.LOADING = "LOADING";
+        // add this "Alerts" object to the parent
+        parentObject.Alerts = this;
+        parentObject.Alerts.LOADING_CIRCLE = "LOADING-CIRCLE";
+        parentObject.Alerts.LOADING = "LOADING";
 
         // create AlertListener object
         var alertListener = new AlertListener();

@@ -38,7 +38,7 @@ function LoggedController() {
                 },
                 requestFinishedResponseReady: function (request, response) {
                     //console.log("CALL CALLBACK! requestFinishedResponseReady, cancelled: " + handler.cancelled);
-                    Alert.removeAllAlerts();
+                    Alerts.removeAllAlerts();
                     try {
                         Store.putStorage("items", JSON.stringify(response));
                         var listController = new ListController();
@@ -48,7 +48,7 @@ function LoggedController() {
                     }
                 }
             };
-            alert("Getting List", Alert.LOADING_CIRCLE, function (buttonIndex, buttonText) {
+            alert("Getting List", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
                 handler.cancelled = true;
             }, "cancel", null);
             Request.send(handler);

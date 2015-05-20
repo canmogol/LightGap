@@ -14,11 +14,16 @@ function MenuController() {
         var screenLoginButton = document.getElementById("screenLoginButton");
         screenLoginButton.onclick = function () {
             var loginController = new LoginController();
-            loginController.init();
+            loginController.otherPublicMethod();
         };
         var screenPlacesButton = document.getElementById("screenPlacesButton");
         screenPlacesButton.onclick = function () {
             alert("places");
+        };
+        var screenNewsButton = document.getElementById("screenNewsButton");
+        screenNewsButton.onclick = function () {
+            var newsController = new NewsController();
+            newsController.init();
         };
     };
 
