@@ -17,18 +17,15 @@ function LoginController() {
     };
 
     // private method
-    function doLogin() {
-        // first open a loading dialog, this will be removed if the user clicks button
-        alert("Logging in", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
-            handler.cancelled = true;
-        }, "cancel", null);
+    function doLogin(username, password) {
+        // create a request handler object
         var requestHandler = {
             url: Statics.SERVER_APP_URL + "login.php",
             method: "GET",
             async: true,
             cancelled: false,
             headers: {"x-http-requester": "X212"},
-            data: {"username": "asd", "password": "123"},
+            data: {"username": username, "password": password},
             onCancel: function () {
                 console.log("Request cancelled!");
             },
@@ -64,6 +61,12 @@ function LoginController() {
                 }
             }
         };
+        // open a loading dialog, this will be removed if the user clicks button
+        alert("Logging in", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
+            requestHandler.cancelled = true;
+        }, "cancel", null);
+        
+        // send request
         Request.send(requestHandler);
     }
 
@@ -73,7 +76,7 @@ function LoginController() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
             if (username.trim().length > 0 && password.trim().length > 0) {
-                doLogin();
+                doLogin(username, password);
             } else {
                 alert(tr("username and password cannot be empty"));
             }

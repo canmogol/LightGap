@@ -58,6 +58,15 @@
             }
         }
     }
+    
+    try{
+        if(document == null){
+            document = topLevelObject;
+        }
+    }catch(exception){
+        this.log("no document object found, setting it to empty object, exception: "+exception);
+        document = {};
+    }
 })(this);
 
 
@@ -81,3 +90,4 @@ Object.prototype.getClass = function getClass() {
 function tr(value) {
     return value;
 }
+

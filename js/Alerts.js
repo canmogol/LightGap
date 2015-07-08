@@ -19,7 +19,7 @@
         // try to replaace alert function
         if (parentObject.alert instanceof Object) {
             parentObject.alert = function (text, image, callback, buttonText, titleText) {
-                addAlert(text, image, callback, buttonText, titleText);
+                parentObject.Alerts.addAlert(text, image, callback, buttonText, titleText);
             }
         }
     } catch (e) {
