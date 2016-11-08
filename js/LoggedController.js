@@ -12,7 +12,7 @@ function LoggedController() {
         listExampleButton.onclick = function () {
             // first open a loading dialog, this will be removed if the user clicks button
             var handler = {
-                url: Statics.SERVER_APP_URL + "list.php",
+                url: Statics.SERVER_APP_URL + "/list",
                 method: "GET",
                 async: true,
                 cancelled: false,

@@ -30,5 +30,5 @@ function ListController() {
         }
         listContainer.scrollTop = 0;
     };
-
+    
 }

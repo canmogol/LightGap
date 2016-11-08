@@ -20,7 +20,7 @@ function LoginController() {
     function doLogin(username, password) {
         // create a request handler object
         var requestHandler = {
-            url: Statics.SERVER_APP_URL + "login.php",
+            url: Statics.SERVER_APP_URL + "login",
             method: "GET",
             async: true,
             cancelled: false,
