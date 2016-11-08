@@ -1,23 +1,19 @@
 from flask import Flask, request, send_from_directory, make_response, redirect
 
-app = Flask(__name__)
-
-# set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
 @app.before_request
 def before_request():
-	aca_id = request.cookies.get('session_id')
-	if aca_id is not None:
-		print('before_request aca_id: ', aca_id, request)
+	authenticatedMethods = ['/list', '/another']
+	session_id = request.cookies.get('session_id')
+	if session_id is None and any(request.path in s for s in authenticatedMethods):
+		response = make_response(redirect('/error'))
+		response.set_cookie('session_id', '', expires=0)
+		return response
 
-@app.route("/list")
-def list():
-	aca_id = request.cookies.get('session_id')
-	if aca_id == '123123123':
-		return '[{"id":"1","name":"aaa"},{"id":"2","name":"vvv"},{"id":"3","name":"qqq"},{"id":"4","name":"xxx"}]'
-	else:
-		return '[]'
+@app.route("/error")
+def error():
+	return '{"error":"unauthorized request"}'
 
 @app.route("/login")
 def login():
@@ -28,6 +24,10 @@ def login():
 @app.route("/login2")
 def login2():
     return '{"isLogged":"true", "message": "Welcome", "user": "John Doe"}'
+
+@app.route("/list")
+def list():
+	return '[{"id":"1","name":"aaa"},{"id":"2","name":"vvv"},{"id":"3","name":"qqq"},{"id":"4","name":"xxx"}]'
 
 @app.route('/js/<path:path>')
 def send_js(path):

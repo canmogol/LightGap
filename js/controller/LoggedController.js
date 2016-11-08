@@ -61,6 +61,7 @@ function LoggedController() {
                 if (buttonIndex == 1) {
                     //console.log("logout cancelled");
                 } else if (buttonText == "ok") {
+                    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
                     Store.clearStorage();
                     Store.putStorage("pageStackString", "menuPage");
                     document.getElementById("loggedPage").style.display = "none";
