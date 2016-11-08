@@ -14,7 +14,7 @@ function MenuController() {
         var screenLoginButton = document.getElementById("screenLoginButton");
         screenLoginButton.onclick = function () {
             var loginController = new LoginController();
-            loginController.otherPublicMethod();
+            loginController.init();
         };
         var screenPlacesButton = document.getElementById("screenPlacesButton");
         screenPlacesButton.onclick = function () {
@@ -24,6 +24,16 @@ function MenuController() {
         screenNewsButton.onclick = function () {
             var newsController = new NewsController();
             newsController.init();
+        };
+        var screenTransportButton = document.getElementById("screenTransportButton");
+        screenTransportButton.onclick = function () {
+            var transportController = new TransportController();
+            transportController.init();
+        };
+        var screenFeedbackButton = document.getElementById("screenFeedbackButton");
+        screenFeedbackButton.onclick = function () {
+            var feedbackController = new FeedbackController();
+            feedbackController.init();
         };
     };
 

@@ -1,5 +1,5 @@
 function BaseController() {
-    this.sayHi = function (name) {
-        console.log("Hi! " + name)
+    this.init = function () {
+        console.log("BaseController init method called")
     };
 }

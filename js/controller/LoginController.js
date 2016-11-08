@@ -1,19 +1,16 @@
 function LoginController() {
 
-    // extend BaseController
-    this.prototype = new BaseController();
-
     // private field
     var mainController = MainController.getInstance();
 
     // public method
     this.publicMethod = function () {
-        console.log("public method called");
+        console.log("LoginController public method called");
     };
 
     // public method
     this.otherPublicMethod = function () {
-        console.log("another public method called");
+        console.log("LoginController another public method called");
     };
 
     // private method
@@ -101,3 +98,6 @@ function LoginController() {
     })(this);
 
 }
+
+// extend BaseController
+LoginController.prototype = new BaseController();
