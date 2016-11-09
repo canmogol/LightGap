@@ -25,4 +25,7 @@ and open below URL;
 http://127.0.0.1:5000/html/index.html
 ```
 
-please check NewsController, TransportController and FeedbackController for inheritance/prototype examples
+please check inheritance/prototype examples;
+ - NewsController
+ - TransportController 
+ - FeedbackController
