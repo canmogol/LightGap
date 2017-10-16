@@ -70,7 +70,7 @@ Request = {
                 }
                 if (!handler.onCancelled) {
                     handler.onCancelled = true;
-                    handler.onCancel();
+                    handler.cancelled();
                 }
             } else {
                 if (req.readyState == 0) {
