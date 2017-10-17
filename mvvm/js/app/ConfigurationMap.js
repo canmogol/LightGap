@@ -1,0 +1,3 @@
+ConfigurationMap = {
+    internalLoadElementId: 'PageLoader-Container'
+};

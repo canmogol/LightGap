@@ -42,7 +42,7 @@ function XhrModel(url) {
      * request data as JSON object
      * @type Object
      */
-    this.data = {"username": "asd", "password": "123"};
+    this.data = {};
 
 }
 

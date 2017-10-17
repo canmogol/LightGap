@@ -37,7 +37,7 @@ function LoginController(loginViewModel) {
     };
 
     //
-    // constructor of controller
+    // constructor
     //
     (function (self, loginViewModel) {
 

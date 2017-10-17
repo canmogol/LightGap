@@ -19,10 +19,23 @@
     <script type='text/javascript' src='js/lib/XhrListener.js' charset="UTF-8"></script>
     <script type='text/javascript' src='js/lib/XhrModel.js' charset="UTF-8"></script>
     <script type='text/javascript' src='js/lib/XHR.js' charset="UTF-8"></script>
-    <script type='text/javascript' src='js/lib/Navigation.js' charset="UTF-8"></script>
+    <script type='text/javascript' src='js/lib/PageLoadListener.js' charset="UTF-8"></script>
+    <script type='text/javascript' src='js/lib/PageLoader.js' charset="UTF-8"></script>
 
 </head>
 <body>
+
+<header>
+    <p>MVVM Example</p>
+</header>
+
+<nav>
+    <a href="#main">Main</a> |
+    <a href="#login">Login</a> |
+    <a href="#products">Products</a> |
+    <a href="#categories">Categories</a> |
+</nav>
+
 <div id="PageLoader-Container">
 </div>
 
@@ -36,6 +49,8 @@
 <script type="text/javascript" src="js/app/login/LoginController.js" charset="UTF-8"></script>
 
 <!-- APPLICATION -->
+<script type='text/javascript' src='js/app/ConfigurationMap.js' charset="UTF-8"></script>
+<script type='text/javascript' src='js/app/NavigationMap.js' charset="UTF-8"></script>
 <script type="text/javascript" src="js/app/Application.js" charset="UTF-8"></script>
 
 

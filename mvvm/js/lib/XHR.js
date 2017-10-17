@@ -101,7 +101,8 @@ function XHR() {
                                     response = JSON.parse(response);
                                 }
                             } catch (e) {
-                                console.log("exception occurred while returning response, e: " + e);
+                                // we can safely ignore this exception since
+                                // response does not need to be a JSON
                             }
                             // call the last lifecycle method
                             listener.requestFinishedResponseReady(req, response);

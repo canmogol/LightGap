@@ -17,15 +17,27 @@ function Application() {
     //
 
     //
-    // constructor of controller
+    // constructor
     //
     (function (self) {
-        // create page loader
-        self.pageLoader = new PageLoader(Navigation);
 
-        // load initial page
-        self.pageLoader.loadInitialPage();
+        // create page loader
+        self.pageLoader = new PageLoader(NavigationMap, ConfigurationMap);
+
+        // register to page changes
+        window.onhashchange = function () {
+            new PageLoader(NavigationMap, ConfigurationMap).handlePageChange();
+        };
+
+        // call for the first time
+        self.pageLoader.handlePageChange();
 
     })(this);
 
 }
+
+/**
+ * application entry point
+ * @type {Application}
+ */
+var application = new Application();
