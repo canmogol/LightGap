@@ -1,8 +1,25 @@
 /**
  * Login View Model
+ * @implement ViewModel
  * @class {LoginViewModel} LoginViewModel
  */
 function LoginViewModel() {
+
+    //
+    //Private and public field declarations
+    //
+
+    /**
+     * view model reference
+     * @type {LoginViewModel}
+     */
+    var viewModel = this;
+
+    /**
+     * Login controller
+     * @type {LoginController}
+     */
+    var controller = null;
 
     /**
      * username
@@ -17,8 +34,27 @@ function LoginViewModel() {
     this.password = null;
 
 
+    //
+    // Private and public method declarations
+    //
+
     /**
-     * craete a new login request model
+     * @param {Controller} controller
+     */
+    this.setController = function (c) {
+        controller = c;
+    };
+
+    /**
+     * clear form elements
+     * @returns {void|undefined}
+     */
+    this.clearForm = function () {
+        // TODO Clear form
+    };
+
+    /**
+     * create a new login request model
      * @returns {LoginRequestModel}
      */
     this.createLoginRequestModel = function () {
@@ -26,5 +62,68 @@ function LoginViewModel() {
             this.username,
             this.password
         );
-    }
+    };
+
+
+    //
+    // i18n, bindings, actions and templates
+    //
+
+    /**
+     * bindings mapping
+     * @returns {{}}
+     */
+    this.getBindings = function () {
+        return {
+            usernameInput: 'username',
+            passwordInput: 'password'
+        };
+    };
+
+    /**
+     * i18n mapping
+     * @returns {{}}
+     */
+    this.getI18n = function () {
+        return {};
+    };
+
+    /**
+     * actions mapping
+     * @returns {{}}
+     */
+    this.getActions = function () {
+        return {
+            loginButton: {
+                click: function () {
+                    controller.doLogin();
+                }
+            },
+            clearButton: {
+                click: function () {
+                    viewModel.clearForm();
+                }
+            }
+        };
+    };
+
+    /**
+     * templates
+     * @returns {{}}
+     */
+    this.getTemplates = function () {
+        return {};
+    };
+
+
+    //
+    // constructor
+    //
+    (function (self) {
+
+        // implement ViewModel interface
+        self.protos.extend(new ViewModel());
+
+    })(this);
+
 }

@@ -8,9 +8,9 @@ function Application() {
     //
 
     /**
-     * @type {PageLoader}
+     * @type {NavigationHandler}
      */
-    this.pageLoader = null;
+    this.navigationHandler = null;
 
     //
     // Private and public method declarations
@@ -21,16 +21,16 @@ function Application() {
     //
     (function (self) {
 
-        // create page loader
-        self.pageLoader = new PageLoader(NavigationMap, ConfigurationMap);
+        // create navigation handler
+        self.navigationHandler = new NavigationHandler(NavigationMap, ConfigurationMap);
 
         // register to page changes
         window.onhashchange = function () {
-            new PageLoader(NavigationMap, ConfigurationMap).handlePageChange();
+            new NavigationHandler(NavigationMap, ConfigurationMap).handlePageChange();
         };
 
         // call for the first time
-        self.pageLoader.handlePageChange();
+        self.navigationHandler.handlePageChange();
 
     })(this);
 

@@ -1,3 +1,3 @@
 ConfigurationMap = {
-    internalLoadElementId: 'PageLoader-Container'
+    internalLoadElementId: 'NavigationHandler-Container'
 };

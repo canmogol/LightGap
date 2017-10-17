@@ -2,7 +2,7 @@
  * @param {LoginViewModel} loginViewModel
  * @class {LoginController} LoginController
  */
-function LoginController(loginViewModel) {
+function LoginController() {
 
     //
     //Private and public field declarations
@@ -16,6 +16,13 @@ function LoginController(loginViewModel) {
     //
     // Private and public method declarations
     //
+
+    /**
+     * @param {ViewModel} viewModel
+     */
+    this.setViewModel = function (viewModel) {
+        this.loginViewModel = viewModel;
+    };
 
     /**
      * send request to server
@@ -39,11 +46,11 @@ function LoginController(loginViewModel) {
     //
     // constructor
     //
-    (function (self, loginViewModel) {
+    (function (self) {
 
-        // set view model
-        self.loginViewModel = loginViewModel;
+        // implement controller interface
+        self.protos.extend(new Controller());
 
-    })(this, loginViewModel);
+    })(this);
 
 }
