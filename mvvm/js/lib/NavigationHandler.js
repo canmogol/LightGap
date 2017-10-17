@@ -51,6 +51,13 @@ function NavigationHandler(navigation, configuration) {
      */
     this.loadMapping = function (mapping) {
 
+        // mapping reference
+        var mappingValue = this.navigation[mapping];
+        // if mapping is not an object, it might be pointing to other mapping
+        if (!(mappingValue instanceof Object)) {
+            mapping = mappingValue;
+        }
+
         // get url from mapping
         var url = this.navigation[mapping]['template'];
 
@@ -76,6 +83,7 @@ function NavigationHandler(navigation, configuration) {
      * @param {string} mapping
      */
     this.pageLoaded = function (mapping) {
+
         // create view model
         var viewModel = null;
         if (this.navigation[mapping]['viewModel'] !== null) {

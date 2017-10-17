@@ -23,7 +23,13 @@ Object.prototype.getClass = function getClass() {
         return "undefined";
     if (this === null)
         return "null";
-    return this.toString().match(/^\[object\s(.*)\]$/)[1];
+    var match = this.toString().match(/^\[object\s(.*)\]$/);
+    if (match !== null) {
+        return match[1];
+    } else {
+        return "Object";
+    }
+
 };
 /**
  * checks if the property is a function
