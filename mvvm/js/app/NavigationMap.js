@@ -7,17 +7,17 @@ NavigationMap = {
     },
     main: {
         template: 'html/main/main.html',
-        controller: LoginController,
-        viewModel: LoginViewModel
+        controller: null,
+        viewModel: null
     },
     products: {
         template: 'html/products/products.html',
-        controller: LoginController,
-        viewModel: LoginViewModel
+        controller: null,
+        viewModel: null
     },
     categories: {
         template: 'html/categories/categories.html',
-        controller: LoginController,
-        viewModel: LoginViewModel
+        controller: null,
+        viewModel: null
     }
 };

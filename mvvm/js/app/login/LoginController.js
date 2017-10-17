@@ -1,4 +1,5 @@
 /**
+ * @implements Controller
  * @param {LoginViewModel} loginViewModel
  * @class {LoginController} LoginController
  */
@@ -29,9 +30,11 @@ function LoginController() {
      */
     this.sendLoginRequest = function () {
         // create model
-        var model = new XhrModel('/login');
+        var model = new XhrModel('/LightGap/mvvm/example/login-response.json');
         model.method = 'POST';
         model.data = this.loginViewModel.createLoginRequestModel();
+
+        console.log(model.data);
 
         // create handler
         var listener = new LoginListener();

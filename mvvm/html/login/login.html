@@ -1,13 +1,20 @@
 <div>
-    <div class="form-input">
+    <div>
+        <select id="siteSelect">
+            <option value="Germany">Germany</option>
+            <option value="USA">USA</option>
+            <option value="Japan">Japan</option>
+        </select>
+    </div>
+    <div>
         <label for="usernameInput">Username: </label>
         <input type="text" name="usernameInput" id="usernameInput" value=""/>
     </div>
-    <div class="form-input">
+    <div>
         <label for="passwordInput">Password:</label>
         <input type="password" name="passwordInput" id="passwordInput" value=""/>
     </div>
+    <button type="button" class="rounded" name="backButton" id="clearButton">clear</button>
     <button type="button" class="rounded" name="loginButton" id="loginButton">login</button>
-    <button type="button" class="rounded" name="backButton" id="clearButton">back</button>
     <span id="usernameOutput"></span>
 </div>

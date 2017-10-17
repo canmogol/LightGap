@@ -76,16 +76,47 @@ function NavigationHandler(navigation, configuration) {
      * @param {string} mapping
      */
     this.pageLoaded = function (mapping) {
-
         // create view model
-        var viewModel = new this.navigation[mapping]['viewModel']();
+        var viewModel = null;
+        if (this.navigation[mapping]['viewModel'] !== null) {
+            viewModel = new this.navigation[mapping]['viewModel']();
+        }
 
         // create controller
-        var controller = new this.navigation[mapping]['controller']();
+        var controller = null;
+        if (this.navigation[mapping]['controller'] !== null) {
+            controller = new this.navigation[mapping]['controller']();
+        }
 
         // wire them up
-        viewModel.setController(controller);
-        controller.setViewModel(viewModel);
+        if (controller !== null) {
+            controller.setViewModel(viewModel);
+        }
+        if (viewModel !== null) {
+            viewModel.setController(controller);
+            // set listeners
+            var actions = viewModel.getActions(mapping);
+
+            // for each id, ex: loginButton, clearButton
+            for (var elementId in actions) {
+                if (actions.hasOwnProperty(elementId)) {
+
+                    // for each mapping, an action for a function should be added
+                    // ex: click: function(){}
+                    for (var actionType in actions[elementId]) {
+                        if (actions[elementId].hasOwnProperty(actionType)) {
+                            var actionFunction = actions[elementId][actionType];
+                            // add function to type
+                            var element = document.getElementById(elementId);
+                            if (element !== null) {
+                                element.addEventListener(actionType, actionFunction);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
 
     };
 

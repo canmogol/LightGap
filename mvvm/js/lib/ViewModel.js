@@ -32,7 +32,7 @@ function ViewModel() {
     };
 
     /**
-     * actions mapping
+     * get actions
      * @returns {{}}
      */
     this.getActions = function () {

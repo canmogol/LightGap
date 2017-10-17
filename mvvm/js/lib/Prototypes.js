@@ -23,14 +23,75 @@ Object.prototype.protos.extend = function (obj) {
  * add getClass method to object
  * @return {*}
  */
-Object.prototype.protos.getClass = function getClass() {
+Object.prototype.getClass = function getClass() {
     if (typeof this === "undefined")
         return "undefined";
     if (this === null)
         return "null";
-    return Object.prototype.toString.call(this).match(/^\[object\s(.*)\]$/)[1];
+    return this.toString().match(/^\[object\s(.*)\]$/)[1];
+};
+/**
+ * checks if the property is a function
+ * @param propertyName
+ * @returns {*|boolean}
+ */
+Object.prototype.protos.isFunction = function (propertyName) {
+    var type = {};
+    return propertyName && type.toString.call(propertyName) === '[object Function]';
 };
 
+/*
+ * object.watch polyfill
+ *
+ * 2012-04-03
+ *
+ * By Eli Grey, http://eligrey.com
+ * Public Domain.
+ * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+ */
+// object.watch
+if (!Object.prototype.watch) {
+    Object.defineProperty(Object.prototype, "watch", {
+        enumerable: false
+        , configurable: true
+        , writable: false
+        , value: function (prop, handler) {
+            var
+                oldval = this[prop]
+                , newval = oldval
+                , getter = function () {
+                    return newval;
+                }
+                , setter = function (val) {
+                    oldval = newval;
+                    return newval = handler.call(this, prop, oldval, val);
+                }
+                ;
+
+            if (delete this[prop]) { // can't watch constants
+                Object.defineProperty(this, prop, {
+                    get: getter
+                    , set: setter
+                    , enumerable: true
+                    , configurable: true
+                });
+            }
+        }
+    });
+}
+// object.unwatch
+if (!Object.prototype.unwatch) {
+    Object.defineProperty(Object.prototype, "unwatch", {
+        enumerable: false
+        , configurable: true
+        , writable: false
+        , value: function (prop) {
+            var val = this[prop];
+            delete this[prop]; // remove accessors
+            this[prop] = val;
+        }
+    });
+}
 
 //
 //
