@@ -126,8 +126,8 @@ function NavigationHandler(navigation, configuration) {
     //
     (function (self, navigation, configuration) {
 
-        // implement PageLoadCompleteListener interface
-        self.protos.extend(new PageLoadCompleteListener());
+        // extends PageLoadCompleteListener
+        self.extend(new PageLoadCompleteListener());
 
         // set navigation
         self.navigation = navigation;

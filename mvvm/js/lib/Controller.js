@@ -1,5 +1,5 @@
 /**
- * @interface {Controller} Controller
+ * @class  {Controller} Controller
  */
 function Controller() {
 

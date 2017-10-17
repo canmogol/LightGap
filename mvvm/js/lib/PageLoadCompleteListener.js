@@ -1,6 +1,6 @@
 /**
  * PageLoad Request Listener
- * @interface {PageLoadCompleteListener} PageLoadCompleteListener
+ * @class {PageLoadCompleteListener} PageLoadCompleteListener
  */
 function PageLoadCompleteListener() {
 

@@ -1,7 +1,7 @@
 // main controller
 var MainController = (function () {
 
-    function Controller(){
+    function MyController(){
         this.getPageStack = function () {
             if (Store.getStorage("pageStackString").trim().length > 0) {
                 var pageStackString = Store.getStorage("pageStackString");
@@ -77,7 +77,7 @@ var MainController = (function () {
     return {
         getInstance: function () {
             if (!instance) {
-                instance = new Controller();
+                instance = new MyController();
             }
             return instance;
         }

@@ -1,8 +1,11 @@
 /**
  * Login Request Listener
+ * @extends XhrListener
+ * @param {LoginResponseListener} loginResponseListener
  * @class {LoginListener} LoginListener
  */
-LoginListener = function () {
+LoginListener = function (loginResponseListener) {
+    this.loginResponseListener = loginResponseListener;
 };
 
 
@@ -25,6 +28,9 @@ LoginListener.prototype.error = function (e) {
  * @param {Object} response
  */
 LoginListener.prototype.requestFinishedResponseReady = function (request, response) {
-    console.log("Login listener, response: " + JSON.stringify(response));
+    // create response model
+    var loginResponseModel = new LoginResponseModel(response.name);
+    // notify response listener
+    this.loginResponseListener.loginResponse(loginResponseModel);
 };
 

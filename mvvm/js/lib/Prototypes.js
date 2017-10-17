@@ -4,17 +4,12 @@
 //
 //
 /**
- * add protos object to javascript Object type, protos will hold the necessary prototype methods like extend
- * @type {{}}
- */
-Object.prototype.protos = {};
-/**
  * add extend method to object
  * @param obj
  */
-Object.prototype.protos.extend = function (obj) {
+Object.prototype.extend = function (obj) {
     for (var i in obj) {
-        if (obj.hasOwnProperty(i)) {
+        if (obj.hasOwnProperty(i) && this[i] === undefined) {
             this[i] = obj[i];
         }
     }
@@ -35,7 +30,7 @@ Object.prototype.getClass = function getClass() {
  * @param propertyName
  * @returns {*|boolean}
  */
-Object.prototype.protos.isFunction = function (propertyName) {
+Object.prototype.isFunction = function (propertyName) {
     var type = {};
     return propertyName && type.toString.call(propertyName) === '[object Function]';
 };

@@ -1,6 +1,6 @@
 /**
  * @implements Controller
- * @param {LoginViewModel} loginViewModel
+ * @implements LoginResponseListener
  * @class {LoginController} LoginController
  */
 function LoginController() {
@@ -17,6 +17,14 @@ function LoginController() {
     //
     // Private and public method declarations
     //
+
+    /**
+     * will be notified at login response
+     * @param {LoginResponseModel} loginResponseModel
+     */
+    this.loginResponse = function (loginResponseModel) {
+        this.loginViewModel.name = loginResponseModel.name;
+    };
 
     /**
      * @param {ViewModel} viewModel
@@ -37,7 +45,7 @@ function LoginController() {
         console.log(model.data);
 
         // create handler
-        var listener = new LoginListener();
+        var listener = new LoginListener(this);
 
         // create XHR
         var xhr = new XHR();
@@ -51,8 +59,10 @@ function LoginController() {
     //
     (function (self) {
 
-        // implement controller interface
-        self.protos.extend(new Controller());
+        // extends controller
+        self.extend(new Controller());
+        // implement login response listener
+        self.extend(new LoginResponseListener());
 
     })(this);
 
