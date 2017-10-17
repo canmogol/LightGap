@@ -7,11 +7,6 @@ function Application() {
     //Private and public field declarations
     //
 
-    /**
-     * @type {NavigationHandler}
-     */
-    this.navigationHandler = null;
-
     //
     // Private and public method declarations
     //
@@ -22,7 +17,7 @@ function Application() {
     (function (self) {
 
         // create navigation handler
-        self.navigationHandler = new NavigationHandler(NavigationMap, ConfigurationMap);
+        var navigationHandler = new NavigationHandler(NavigationMap, ConfigurationMap);
 
         // register to page changes
         window.onhashchange = function () {
@@ -30,7 +25,7 @@ function Application() {
         };
 
         // call for the first time
-        self.navigationHandler.handlePageChange();
+        navigationHandler.handlePageChange();
 
     })(this);
 

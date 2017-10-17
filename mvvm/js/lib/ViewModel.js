@@ -62,6 +62,9 @@ function ViewModel(viewModel) {
         throw new Error('unimplemented method');
     };
 
+
+
+
     /**
      * assign value to element
      * @param element
