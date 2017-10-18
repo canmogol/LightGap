@@ -55,16 +55,25 @@ function LoginController() {
     };
 
     /**
-     * send request to server
+     * lifecycle method stop
      */
-    this.sendLoginRequest = function () {
-
+    this.onStop = function () {
         // create a login request model
         var loginRequestModel = this.loginViewModel.createLoginRequestModel();
 
         // store current login request model at service
         // we might use this model at re-visiting
         this.loginService.setLoginRequestModel(loginRequestModel);
+    };
+
+
+    /**
+     * send request to server
+     */
+    this.sendLoginRequest = function () {
+
+        // create a login request model
+        var loginRequestModel = this.loginViewModel.createLoginRequestModel();
 
         // create model
         var model = new XhrModel('/LightGap/mvvm/example/login-response.json');
