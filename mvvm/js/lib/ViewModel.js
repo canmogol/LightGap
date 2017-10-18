@@ -71,12 +71,7 @@ function ViewModel(viewModel) {
      * @param value
      */
     function assignValue(element, value) {
-        if (element.hasAttribute('value')
-            ||
-            (element instanceof HTMLInputElement
-                || element instanceof HTMLSelectElement
-            )
-        ) {
+        if (element.value !== undefined) {
             element.value = value;
         } else {
             element.innerHTML = value;
@@ -95,7 +90,7 @@ function ViewModel(viewModel) {
             assignValue(element, value);
         }
         // otherwise if element has a 'value' assign it to property
-        else if (element.hasAttribute('value')) {
+        else if (element.value !== undefined) {
             viewModel[property] = element.value;
         }
 
