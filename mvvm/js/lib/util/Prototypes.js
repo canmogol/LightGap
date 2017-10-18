@@ -113,7 +113,7 @@ if (!Object.prototype.unwatch) {
 (function (topLevelObject) {
     try {
         if (!topLevelObject.console.log instanceof Object) {
-            throw "not an object!";
+            throw new Error("not an object!");
         } else {
             try {
                 if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
@@ -159,13 +159,13 @@ if (!Object.prototype.unwatch) {
         };
         topLevelObject.console = {
             debug: function (text) {
-                this.log(text);
+                topLevelObject.console.log(text);
             },
             error: function (text) {
-                this.log(text);
+                topLevelObject.console.log(text);
             },
             info: function (text) {
-                this.log(text);
+                topLevelObject.console.log(text);
             },
             log: function (text) {
                 topLevelObject.ConsoleLoggingArray.add(text);
