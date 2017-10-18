@@ -97,8 +97,6 @@ function LoginController() {
         model.method = 'POST';
         model.data = loginRequestModel;
 
-        console.log(model.data);
-
         // create handler
         var listener = new LoginListener(this);
 

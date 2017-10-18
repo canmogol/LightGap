@@ -34,7 +34,7 @@ function PageLoadListener(internalLoadElementId, mapping, pageLoadCompleteListen
      * error handler
      */
     this.error = function (e) {
-        console.log("PageLoad listener, error: " + JSON.stringify(e));
+        Logger.error("PageLoad listener, error: " + JSON.stringify(e));
     };
 
     /**

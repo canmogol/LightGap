@@ -65,7 +65,7 @@ function XHR() {
                     // notify listener that the request is cancelled
                     listener.cancelled()
                 } catch (e) {
-                    console.debug("exception while aborting the request, e: " + e);
+                    Logger.debug("exception while aborting the request, e: " + e);
                     // notify listener about error
                     listener.error(e);
                 }

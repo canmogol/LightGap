@@ -13,7 +13,7 @@ var Storage = (function () {
             try {
                 localStorage.setItem(key, value);
             } catch (e) {
-                console.debug("exception occurred while local storage setItem, e:" + e);
+                Logger.debug("exception occurred while local storage setItem, e:" + e);
             }
         };
 
@@ -21,7 +21,7 @@ var Storage = (function () {
             try {
                 return localStorage.getItem(key);
             } catch (e) {
-                console.debug("exception occurred while local storage getItem, e:" + e);
+                Logger.debug("exception occurred while local storage getItem, e:" + e);
                 return null;
             }
         };
@@ -30,7 +30,7 @@ var Storage = (function () {
             try {
                 localStorage.clear();
             } catch (e) {
-                console.debug("exception occurred while local storage clear, e:" + e);
+                Logger.debug("exception occurred while local storage clear, e:" + e);
             }
         };
 
@@ -38,7 +38,7 @@ var Storage = (function () {
             try {
                 localStorage.removeItem(key);
             } catch (e) {
-                console.debug("exception occurred while local storage clear, e:" + e);
+                Logger.debug("exception occurred while local storage clear, e:" + e);
             }
         };
 
@@ -46,7 +46,7 @@ var Storage = (function () {
             try {
                 localStorage.key(index);
             } catch (e) {
-                console.debug("exception occurred while local storage clear, e:" + e);
+                Logger.debug("exception occurred while local storage clear, e:" + e);
             }
         };
     }

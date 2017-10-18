@@ -19,7 +19,7 @@ LoginListener.prototype = new XhrListener();
  * error handler
  */
 LoginListener.prototype.error = function (e) {
-    console.log("Login listener, error: " + JSON.stringify(e));
+    Logger.error("Login listener, error: " + JSON.stringify(e));
 };
 
 /**
