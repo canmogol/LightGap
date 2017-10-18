@@ -9,14 +9,8 @@ var LoginService = (function () {
      */
     function LoginServiceImpl() {
 
-        /**
-         * @type {LoginRequestModel}
-         */
         var _loginRequestModel = null;
 
-        /**
-         * @param loginRequestModel
-         */
         this.setLoginRequestModel = function (loginRequestModel) {
             _loginRequestModel = loginRequestModel;
         };
@@ -37,6 +31,21 @@ var LoginService = (function () {
      * @type {LoginService} LoginService
      */
     return {
+
+        /**
+         * @param {LoginRequestModel} loginRequestModel
+         */
+        setLoginRequestModel: function (loginRequestModel) {
+            this.getInstance().setLoginRequestModel(loginRequestModel);
+        },
+
+        /**
+         * @return {LoginRequestModel}
+         */
+        getLoginRequestModel: function () {
+            return this.getInstance().getLoginRequestModel();
+        },
+
         /**
          * singleton LoginService
          * @returns {LoginService} LoginService

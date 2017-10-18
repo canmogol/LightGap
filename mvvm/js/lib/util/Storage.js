@@ -4,7 +4,7 @@
 var Storage = (function () {
 
     /**
-     * implementation of Storage
+     * default implementation of Storage interface, using browser's localStorage
      * @constructor
      */
     function StorageImpl() {
