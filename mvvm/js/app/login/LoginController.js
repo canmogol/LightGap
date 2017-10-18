@@ -19,6 +19,11 @@ function LoginController() {
      */
     this.loginService = null;
 
+    /**
+     * @property {Storage} Storage
+     */
+    this.storage = null;
+
     //
     // Private and public method declarations
     //
@@ -29,6 +34,7 @@ function LoginController() {
      */
     this.loginResponse = function (loginResponseModel) {
         this.loginViewModel.name = loginResponseModel.name;
+        this.storage.put('LoginResponseModel', JSON.stringify(loginResponseModel));
     };
 
     /**
@@ -44,6 +50,17 @@ function LoginController() {
     this.onStart = function (viewModel) {
         // set view model
         this.loginViewModel = viewModel;
+
+        // get the stored model
+        var loginResponseModelStored = this.storage.get('LoginResponseModel');
+        if (loginResponseModelStored !== null) {
+            /**
+             * @type {LoginResponseModel}
+             */
+            var loginResponseModel = JSON.parse(loginResponseModelStored);
+            // set stored name to view model
+            this.loginViewModel.name = loginResponseModel.name;
+        }
 
         // get login request model
         var loginRequestModel = this.loginService.getLoginRequestModel();
@@ -105,6 +122,9 @@ function LoginController() {
 
         // set the login service instance
         self.loginService = LoginService.getInstance();
+
+        // set the storage instance
+        self.storage = Storage.getInstance();
 
     })(this);
 
