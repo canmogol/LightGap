@@ -3,6 +3,10 @@
  */
 function XHR() {
 
+    //
+    // Private and public method declarations
+    //
+
     /**
      * @param {XhrModel} model
      * @param {XhrListener} listener

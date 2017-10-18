@@ -4,6 +4,10 @@
  */
 function LoginResponseListener() {
 
+    //
+    // Private and public method declarations
+    //
+
     /**
      * will be notified at login response
      * @param {LoginResponseModel} loginResponseModel

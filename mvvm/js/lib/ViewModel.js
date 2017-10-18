@@ -5,11 +5,19 @@
  */
 function ViewModel(viewModel) {
 
+    //
+    // Private and public field declarations
+    //
+
     /**
      * controller
      * @type {Controller}
      */
     var controller = null;
+
+    //
+    // Private and public method declarations
+    //
 
     /**
      * lifecycle method start

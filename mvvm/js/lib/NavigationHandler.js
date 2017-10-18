@@ -7,7 +7,7 @@
 function NavigationHandler(navigation, configuration) {
 
     //
-    //Private and public field declarations
+    // Private and public field declarations
     //
 
     /**
@@ -63,9 +63,18 @@ function NavigationHandler(navigation, configuration) {
 
         // mapping reference
         var mappingValue = this.navigation[mapping];
+        // if mapping is undefined
+        if (mappingValue === undefined) {
+            mapping = 'initial';
+        }
         // if mapping is not an object, it might be pointing to other mapping
-        if (!(mappingValue instanceof Object)) {
+        else if (!(mappingValue instanceof Object)) {
             mapping = mappingValue;
+        }
+
+        // set mapping to pointing map
+        if (mapping === 'initial') {
+            mapping = this.navigation['initial']
         }
 
         // get url from mapping

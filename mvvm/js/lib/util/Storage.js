@@ -51,7 +51,6 @@ var Storage = (function () {
         };
     }
 
-
     /**
      * instance variable
      * @private

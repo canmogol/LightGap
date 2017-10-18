@@ -7,6 +7,10 @@
  */
 function PageLoadListener(internalLoadElementId, mapping, pageLoadCompleteListener) {
 
+    //
+    // Private and public field declarations
+    //
+
     /**
      * @type {string}
      */
@@ -21,6 +25,10 @@ function PageLoadListener(internalLoadElementId, mapping, pageLoadCompleteListen
      * @type {PageLoadCompleteListener}
      */
     this.pageLoadCompleteListener = null;
+
+    //
+    // Private and public method declarations
+    //
 
     /**
      * error handler

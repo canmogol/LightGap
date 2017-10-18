@@ -1,5 +1,5 @@
 /**
- * application entry point
+ * application entry point, IIFE (immediately-invoked function expression)
  */
 (/**
  * @class {Application} Application

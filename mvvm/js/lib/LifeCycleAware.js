@@ -3,6 +3,10 @@
  */
 function LifeCycleAware() {
 
+    //
+    // Private and public method declarations
+    //
+
     /**
      * lifecycle method create
      */

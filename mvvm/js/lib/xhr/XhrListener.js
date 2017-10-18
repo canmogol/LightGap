@@ -4,6 +4,10 @@
  */
 function XhrListener() {
 
+    //
+    // Private and public method declarations
+    //
+
     /**
      * error listener
      * @param {Object} e

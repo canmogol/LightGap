@@ -5,6 +5,10 @@
  */
 function XhrModel(url) {
 
+    //
+    // Private and public field declarations
+    //
+
     /**
      * request url
      * @example "http://ip.jsontest.com"

@@ -181,4 +181,4 @@ if (!Object.prototype.unwatch) {
         this.log("no document object found, setting it to empty object, exception: " + exception);
         document = {};
     }
-})(this);
+})(this /*this is the global window variable in browser*/);

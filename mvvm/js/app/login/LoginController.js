@@ -6,7 +6,7 @@
 function LoginController() {
 
     //
-    //Private and public field declarations
+    // Private and public field declarations
     //
 
     /**

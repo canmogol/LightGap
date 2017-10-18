@@ -1,3 +1,7 @@
+/**
+ * application navigation map, should define initial key.
+ * @type {NavigationMap}
+ */
 NavigationMap = {
     initial: 'main',
     login: {

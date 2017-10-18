@@ -4,11 +4,19 @@
  */
 function Controller() {
 
+    //
+    // Private and public field declarations
+    //
+
     /**
      * viewModel
      * @type {ViewModel}
      */
     var viewModel = null;
+
+    //
+    // Private and public method declarations
+    //
 
     /**
      * lifecycle method start

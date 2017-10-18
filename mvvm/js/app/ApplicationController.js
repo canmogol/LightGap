@@ -8,6 +8,12 @@ function ApplicationController() {
     //Private and public field declarations
     //
 
+
+    //
+    // Private and public method declarations
+    //
+
+
     //
     // constructor
     //
