@@ -19,5 +19,12 @@ NavigationMap = {
         template: 'html/categories/categories.html',
         controller: null,
         viewModel: null
+    },
+    navigate: function (mapping) {
+        var key = NavigationMap[mapping];
+        if (key !== undefined || mapping === 'initial') {
+            key = NavigationMap['initial'];
+        }
+        window.location.href = window.location.href.split('#')[0] + '#' + key;
     }
 };

@@ -32,6 +32,13 @@ function LoginController() {
     };
 
     /**
+     * navigates to main
+     */
+    this.navigateToMain = function () {
+        NavigationMap.navigate('main');
+    };
+
+    /**
      * @param {ViewModel} viewModel
      */
     this.onStart = function (viewModel) {

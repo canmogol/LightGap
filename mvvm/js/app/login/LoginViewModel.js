@@ -98,6 +98,11 @@ function LoginViewModel() {
                 click: function () {
                     viewModel.clearForm();
                 }
+            },
+            mainButton: {
+                click: function () {
+                    viewModel.getController().navigateToMain();
+                }
             }
         };
     };

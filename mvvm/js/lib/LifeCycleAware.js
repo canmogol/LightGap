@@ -7,6 +7,7 @@ function LifeCycleAware() {
      * lifecycle method create
      */
     this.onCreate = function () {
+        console.log('onCreate ' + this.getClass());
     };
 
     /**
@@ -14,12 +15,14 @@ function LifeCycleAware() {
      * @param {{}} o
      */
     this.onStart = function (o) {
+        console.log('onStart ' + this.getClass());
     };
 
     /**
      * lifecycle method stop
      */
     this.onStop = function () {
+        console.log('onStop ' + this.getClass());
     };
 
 }

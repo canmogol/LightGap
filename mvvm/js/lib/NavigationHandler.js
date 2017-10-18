@@ -11,6 +11,16 @@ function NavigationHandler(navigation, configuration) {
     //
 
     /**
+     * @type {ViewModel}
+     */
+    var viewModel = null;
+
+    /**
+     * @type {Controller}
+     */
+    var controller = null;
+
+    /**
      * @type {NavigationMap}
      */
     this.navigation = null;
@@ -77,16 +87,6 @@ function NavigationHandler(navigation, configuration) {
         // send request
         xhr.send(model, listener);
     };
-
-    /**
-     * @type {ViewModel}
-     */
-    var viewModel = null;
-
-    /**
-     * @type {Controller}
-     */
-    var controller = null;
 
     /**
      * will be notified after page load

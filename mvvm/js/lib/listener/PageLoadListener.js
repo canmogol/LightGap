@@ -43,7 +43,7 @@ function PageLoadListener(internalLoadElementId, mapping, pageLoadCompleteListen
 
         // notify listener if avilable
         if (this.pageLoadCompleteListener !== null) {
-            this.pageLoadCompleteListener.pageLoaded(mapping);
+            this.pageLoadCompleteListener.pageLoaded(this.mapping);
         }
     };
 
