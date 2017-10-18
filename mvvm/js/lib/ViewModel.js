@@ -28,6 +28,21 @@ function ViewModel(viewModel) {
     };
 
     /**
+     * lifecycle method stop
+     */
+    this.onStop = function () {
+        // for each property
+        for (var property in viewModel) {
+            if (viewModel.hasOwnProperty(property)
+                && viewModel.isFunction(property) === false
+                && viewModel.getBindings()[property] !== undefined) {
+                // unwatch this property
+                viewModel.unwatch(property);
+            }
+        }
+    };
+
+    /**
      * @return {Controller}
      */
     this.getController = function () {
