@@ -19,17 +19,22 @@ Object.prototype.extend = function (obj) {
  * @return {*}
  */
 Object.prototype.getClass = function getClass() {
-    if (typeof this === "undefined")
+    if (typeof this === "undefined") {
         return "undefined";
-    if (this === null)
-        return "null";
-    var match = this.toString().match(/^\[object\s(.*)\]$/);
-    if (match !== null) {
-        return match[1];
-    } else {
-        return "Object";
     }
-
+    if (this === null) {
+        return "null";
+    }
+    if (this.toString() !== "[object Object]") {
+        var match = this.toString().match(/^\[object\s(.*)\]$/);
+        if (match !== null) {
+            return match[1];
+        } else {
+            return "Object";
+        }
+    } else {
+        return this.constructor.name;
+    }
 };
 /**
  * checks if the property is a function

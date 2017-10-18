@@ -1,13 +1,39 @@
 /**
+ * @extends {LifeCycleAware}
  * @class  {Controller} Controller
  */
 function Controller() {
 
     /**
-     * @param {ViewModel} viewModel
+     * viewModel
+     * @type {ViewModel}
      */
-    this.setViewModel = function (viewModel) {
-        throw new Error('unimplemented method');
+    var viewModel = null;
+
+    /**
+     * lifecycle method start
+     * @param {ViewModel} vm
+     */
+    this.onStart = function (vm) {
+        viewModel = vm
     };
+
+    /**
+     * @return {ViewModel}
+     */
+    this.getViewModel = function () {
+        return viewModel;
+    };
+
+
+    //
+    // constructor
+    //
+    (function (self) {
+
+        // extends LifeCycleAware
+        self.extend(new LifeCycleAware());
+
+    })(this);
 
 }

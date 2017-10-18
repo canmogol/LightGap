@@ -1,6 +1,6 @@
 /**
- * @implements Controller
- * @implements LoginResponseListener
+ * @extends Controller
+ * @extends LoginResponseListener
  * @class {LoginController} LoginController
  */
 function LoginController() {
@@ -13,6 +13,11 @@ function LoginController() {
      * @property {LoginViewModel} loginViewModel
      */
     this.loginViewModel = null;
+
+    /**
+     * @property {LoginService} loginService
+     */
+    this.loginService = null;
 
     //
     // Private and public method declarations
@@ -29,18 +34,35 @@ function LoginController() {
     /**
      * @param {ViewModel} viewModel
      */
-    this.setViewModel = function (viewModel) {
+    this.onStart = function (viewModel) {
+        // set view model
         this.loginViewModel = viewModel;
+
+        // get login request model
+        var loginRequestModel = this.loginService.getLoginRequestModel();
+        // if any stored at service
+        if (loginRequestModel !== null) {
+            this.loginViewModel.username = loginRequestModel.username;
+            this.loginViewModel.site = loginRequestModel.site;
+        }
     };
 
     /**
      * send request to server
      */
     this.sendLoginRequest = function () {
+
+        // create a login request model
+        var loginRequestModel = this.loginViewModel.createLoginRequestModel();
+
+        // store current login request model at service
+        // we might use this model at re-visiting
+        this.loginService.setLoginRequestModel(loginRequestModel);
+
         // create model
         var model = new XhrModel('/LightGap/mvvm/example/login-response.json');
         model.method = 'POST';
-        model.data = this.loginViewModel.createLoginRequestModel();
+        model.data = loginRequestModel;
 
         console.log(model.data);
 
@@ -61,8 +83,12 @@ function LoginController() {
 
         // extends controller
         self.extend(new Controller());
+
         // implement login response listener
         self.extend(new LoginResponseListener());
+
+        // set the login service instance
+        self.loginService = LoginService.getInstance();
 
     })(this);
 

@@ -1,5 +1,5 @@
 /**
- * @abstract
+ * @extends {LifeCycleAware}
  * @param {ViewModel} viewModel
  * @class {ViewModel} ViewModel
  */
@@ -12,9 +12,10 @@ function ViewModel(viewModel) {
     var controller = null;
 
     /**
+     * lifecycle method start
      * @param {Controller} c
      */
-    this.setController = function (c) {
+    this.onStart = function (c) {
         controller = c;
     };
 
@@ -61,8 +62,6 @@ function ViewModel(viewModel) {
     this.getTemplates = function () {
         throw new Error('unimplemented method');
     };
-
-
 
 
     /**
@@ -121,7 +120,10 @@ function ViewModel(viewModel) {
     //
     // constructor
     //
-    (function () {
+    (function (self) {
+
+        // extends LifeCycleAware
+        self.extend(new LifeCycleAware());
 
         // for each property
         for (var property in viewModel) {
@@ -142,7 +144,7 @@ function ViewModel(viewModel) {
             }
         }
 
-    })();
+    })(this);
 
 
 }

@@ -21,7 +21,7 @@ function Application() {
 
         // register to page changes
         window.onhashchange = function () {
-            new NavigationHandler(NavigationMap, ConfigurationMap).handlePageChange();
+            navigationHandler.handlePageChange();
         };
 
         // call for the first time

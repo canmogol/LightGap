@@ -79,31 +79,49 @@ function NavigationHandler(navigation, configuration) {
     };
 
     /**
+     * @type {ViewModel}
+     */
+    var viewModel = null;
+
+    /**
+     * @type {Controller}
+     */
+    var controller = null;
+
+    /**
      * will be notified after page load
      * @param {string} mapping
      */
     this.pageLoaded = function (mapping) {
 
+        // call stop lifecycle method and remove previous object
+        if (viewModel !== null) {
+            viewModel.onStop();
+            viewModel = null;
+        }
+
         // create view model
-        var viewModel = null;
         if (this.navigation[mapping]['viewModel'] !== null) {
             viewModel = new this.navigation[mapping]['viewModel']();
+            viewModel.onCreate();
+        }
+
+        // call stop lifecycle method and remove previous object
+        if (controller !== null) {
+            controller.onStop();
+            controller = null;
         }
 
         // create controller
-        var controller = null;
         if (this.navigation[mapping]['controller'] !== null) {
             controller = new this.navigation[mapping]['controller']();
+            controller.onCreate();
         }
 
-        // wire them up
-        if (controller !== null) {
-            controller.setViewModel(viewModel);
-        }
+        // init and start view model
         if (viewModel !== null) {
-            viewModel.setController(controller);
             // set listeners
-            var actions = viewModel.getActions(mapping);
+            var actions = viewModel.getActions();
 
             // for each id, ex: loginButton, clearButton
             for (var elementId in actions) {
@@ -124,6 +142,14 @@ function NavigationHandler(navigation, configuration) {
 
                 }
             }
+
+            // start view model
+            viewModel.onStart(controller);
+        }
+
+        // start controller
+        if (controller !== null) {
+            controller.onStart(viewModel);
         }
 
     };
