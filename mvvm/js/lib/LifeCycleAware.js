@@ -1,5 +1,7 @@
 /**
- * @class  {LifeCycleAware} LifeCycleAware
+ * default lifecycle implementation, logs the lifecycle step name and class name.
+ * @implements LifeCycleAwareListener
+ * @class {LifeCycleAware} LifeCycleAware
  */
 function LifeCycleAware() {
 
@@ -28,5 +30,15 @@ function LifeCycleAware() {
     this.onStop = function () {
         Logger.debug("onStop " + this.getClass());
     };
+
+    //
+    // constructor
+    //
+    (function (self) {
+
+        // implements LifeCycleAwareListener
+        self.implement(LifeCycleAwareListener);
+
+    })(this);
 
 }

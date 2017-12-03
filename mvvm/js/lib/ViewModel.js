@@ -1,4 +1,5 @@
 /**
+ * @viewModel 'ViewModel' as in MVVM (Model-View-ViewModel) pattern, handles bidirectional binding
  * @extends {LifeCycleAware}
  * @param {ViewModel} viewModel
  * @class {ViewModel} ViewModel
@@ -10,10 +11,10 @@ function ViewModel(viewModel) {
     //
 
     /**
-     * controller
-     * @type {Controller}
+     * model
+     * @type {Model}
      */
-    var controller = null;
+    var model = null;
 
     //
     // Private and public method declarations
@@ -21,10 +22,10 @@ function ViewModel(viewModel) {
 
     /**
      * lifecycle method start
-     * @param {Controller} c
+     * @param {Model} c
      */
     this.onStart = function (c) {
-        controller = c;
+        model = c;
     };
 
     /**
@@ -43,15 +44,15 @@ function ViewModel(viewModel) {
     };
 
     /**
-     * @return {Controller}
+     * @return {Model}
      */
-    this.getController = function () {
-        return controller;
+    this.getModel = function () {
+        return model;
     };
 
 
     //
-    // i18n, bindings, actions and templates
+    // i18n, bindings, actions and views
     //
 
     /**
@@ -79,7 +80,7 @@ function ViewModel(viewModel) {
     };
 
     /**
-     * templates
+     * views
      * @returns {{}}
      */
     this.getTemplates = function () {
@@ -146,7 +147,7 @@ function ViewModel(viewModel) {
     (function (self) {
 
         // extends LifeCycleAware
-        self.extend(new LifeCycleAware());
+        self.extend(LifeCycleAware);
 
         // for each property
         for (var property in viewModel) {

@@ -11,5 +11,4 @@ function LoginResponseModel(name) {
      */
     this.name = name;
 
-
 }

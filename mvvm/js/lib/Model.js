@@ -1,8 +1,9 @@
 /**
+ * @model 'Model' as in MVVM (Model-View-ViewModel) pattern, sometimes referred as 'Controller'
  * @extends {LifeCycleAware}
- * @class  {Controller} Controller
+ * @class  {Model} Model
  */
-function Controller() {
+function Model() {
 
     //
     // Private and public field declarations
@@ -40,7 +41,7 @@ function Controller() {
     (function (self) {
 
         // extends LifeCycleAware
-        self.extend(new LifeCycleAware());
+        self.extend(LifeCycleAware);
 
     })(this);
 

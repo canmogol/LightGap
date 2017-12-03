@@ -1,27 +1,30 @@
 /**
- * application navigation map, should define initial key.
+ * Application navigation map, should define initial key which is loaded as the page loads.
+ *
+ * Each navigation step represented as in MVVM pattern.
+ *
  * @type {NavigationMap}
  */
 NavigationMap = {
     initial: 'main',
     login: {
-        template: 'html/login/login.html',
-        controller: LoginController,
+        view: 'html/login/login.html',
+        model: LoginModel,
         viewModel: LoginViewModel
     },
     main: {
-        template: 'html/main/main.html',
-        controller: null,
+        view: 'html/main/main.html',
+        model: null,
         viewModel: null
     },
     products: {
-        template: 'html/products/products.html',
-        controller: null,
+        view: 'html/products/products.html',
+        model: null,
         viewModel: null
     },
     categories: {
-        template: 'html/categories/categories.html',
-        controller: null,
+        view: 'html/categories/categories.html',
+        model: null,
         viewModel: null
     },
     navigate: function (mapping) {

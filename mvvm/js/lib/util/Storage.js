@@ -1,11 +1,15 @@
 /**
- * @instance {Storage} Storage
+ * @interface
+ * @class {Storage} Storage
  */
 var Storage = (function () {
 
     /**
-     * default implementation of Storage interface, using browser's localStorage
-     * @constructor
+     * default implementation of Storage, using browser's localStorage
+     * @private
+     * @default
+     * @implements Storage
+     * @class {StorageImpl} StorageImpl
      */
     function StorageImpl() {
 
@@ -53,7 +57,7 @@ var Storage = (function () {
 
     /**
      * instance variable
-     * @private
+     * @private Storage _instance
      */
     var _instance;
 

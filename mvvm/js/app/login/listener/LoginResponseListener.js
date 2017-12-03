@@ -1,5 +1,5 @@
 /**
- * Login Response Listener
+ * @interface
  * @class {LoginResponseListener} LoginResponseListener
  */
 function LoginResponseListener() {

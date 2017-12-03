@@ -1,11 +1,15 @@
 /**
- * @instance {Logger} Logger
+ * @interface
+ * @class {Logger} Logger
  */
 var Logger = (function () {
 
     /**
      * default implementation of Logger interface, using global console
-     * @constructor
+     * @private
+     * @default
+     * @implements Logger
+     * @class {LoggerImpl} LoggerImpl
      */
     function LoggerImpl() {
         this.log = function (log) {

@@ -5,9 +5,25 @@
 //
 /**
  * add extend method to object
- * @param obj
+ * @param className
  */
-Object.prototype.extend = function (obj) {
+Object.prototype.extend = function () {
+    var args = Array.prototype.slice.call(arguments);
+    var className = args[0];
+    var constructorArgs = args.splice(1);
+    var obj = Reflect.construct(className, constructorArgs);
+    for (var i in obj) {
+        if (obj.hasOwnProperty(i) && this[i] === undefined) {
+            this[i] = obj[i];
+        }
+    }
+};
+/**
+ * add implement method to object
+ * @param interfaceName
+ */
+Object.prototype.implement = function (interfaceName) {
+    var obj = new interfaceName();
     for (var i in obj) {
         if (obj.hasOwnProperty(i) && this[i] === undefined) {
             this[i] = obj[i];

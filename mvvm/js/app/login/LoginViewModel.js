@@ -1,5 +1,6 @@
 /**
  * Login View Model
+ * @viewModel 'ViewModel' as in MVVM (Model-View-ViewModel) pattern, handles bidirectional binding
  * @extends ViewModel
  * @class {LoginViewModel} LoginViewModel
  */
@@ -63,7 +64,7 @@ function LoginViewModel() {
 
 
     //
-    // i18n, bindings, actions and templates
+    // i18n, bindings, actions and views
     //
 
     /**
@@ -91,7 +92,7 @@ function LoginViewModel() {
         return {
             loginButton: {
                 click: function () {
-                    viewModel.getController().sendLoginRequest();
+                    viewModel.getModel().sendLoginRequest();
                 }
             },
             clearButton: {
@@ -101,7 +102,12 @@ function LoginViewModel() {
             },
             mainButton: {
                 click: function () {
-                    viewModel.getController().navigateToMain();
+                    viewModel.getModel().navigateToMain();
+                }
+            },
+            logoutButton: {
+                click: function () {
+                    viewModel.getModel().logout();
                 }
             }
         };
@@ -113,8 +119,8 @@ function LoginViewModel() {
     //
     (function (self) {
 
-        // extends ViewModel
-        self.extend(new ViewModel(self));
+        // extends ViewModel class, 'self' is the constructor parameter of ViewModel, i.e. 'new ViewModel(self)'
+        self.extend(ViewModel, self);
 
     })(this);
 

@@ -1,11 +1,16 @@
 /**
- * @instance {LoginService} LoginService
+ * See the private default implementation of LoginService
+ * @interface
+ * @class {LoginService} LoginService
  */
 var LoginService = (function () {
 
     /**
-     * implementation of LoginService
-     * @constructor
+     * default implementation of LoginService
+     * @private
+     * @default
+     * @implements LoginService
+     * @class {LoginServiceImpl} LoginServiceImpl
      */
     function LoginServiceImpl() {
 
@@ -23,7 +28,7 @@ var LoginService = (function () {
 
     /**
      * instance variable
-     * @private
+     * @private LoginService _instance
      */
     var _instance;
 

@@ -1,5 +1,5 @@
 /**
- * application entry point, IIFE (immediately-invoked function expression)
+ * Application entry point, IIFE (immediately-invoked function expression)
  */
 (/**
  * @class {Application} Application
@@ -19,11 +19,11 @@
     //
     (function (self) {
 
-        // try to create application controller and view model
-        var applicationController = null;
-        if (ConfigurationMap['applicationController'] !== undefined) {
-            applicationController = new ConfigurationMap['applicationController']();
-            applicationController.onCreate();
+        // try to create application model and view model
+        var applicationModel = null;
+        if (ConfigurationMap['applicationModel'] !== undefined) {
+            applicationModel = new ConfigurationMap['applicationModel']();
+            applicationModel.onCreate();
         }
         var applicationViewModel = null;
         if (ConfigurationMap['applicationViewModel'] !== undefined) {
@@ -31,12 +31,12 @@
             applicationViewModel.onCreate();
         }
 
-        // wire controller and view model
+        // wire model and view model
         if (applicationViewModel !== null) {
-            applicationViewModel.onStart(applicationController);
+            applicationViewModel.onStart(applicationModel);
         }
-        if (applicationController !== null) {
-            applicationController.onStart(applicationViewModel);
+        if (applicationModel !== null) {
+            applicationModel.onStart(applicationViewModel);
         }
 
         // create navigation handler

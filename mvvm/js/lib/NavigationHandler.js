@@ -16,9 +16,9 @@ function NavigationHandler(navigation, configuration) {
     var viewModel = null;
 
     /**
-     * @type {Controller}
+     * @type {Model}
      */
-    var controller = null;
+    var model = null;
 
     /**
      * @type {NavigationMap}
@@ -78,7 +78,7 @@ function NavigationHandler(navigation, configuration) {
         }
 
         // get url from mapping
-        var url = this.navigation[mapping]['template'];
+        var url = this.navigation[mapping]['view'];
 
         // create model
         var model = new XhrModel(url);
@@ -116,15 +116,15 @@ function NavigationHandler(navigation, configuration) {
         }
 
         // call stop lifecycle method and remove previous object
-        if (controller !== null) {
-            controller.onStop();
-            controller = null;
+        if (model !== null) {
+            model.onStop();
+            model = null;
         }
 
-        // create controller
-        if (this.navigation[mapping]['controller'] !== null) {
-            controller = new this.navigation[mapping]['controller']();
-            controller.onCreate();
+        // create model
+        if (this.navigation[mapping]['model'] !== null) {
+            model = new this.navigation[mapping]['model']();
+            model.onCreate();
         }
 
         // init and start view model
@@ -153,12 +153,12 @@ function NavigationHandler(navigation, configuration) {
             }
 
             // start view model
-            viewModel.onStart(controller);
+            viewModel.onStart(model);
         }
 
-        // start controller
-        if (controller !== null) {
-            controller.onStart(viewModel);
+        // start model
+        if (model !== null) {
+            model.onStart(viewModel);
         }
 
     };
@@ -169,8 +169,8 @@ function NavigationHandler(navigation, configuration) {
     //
     (function (self, navigation, configuration) {
 
-        // extends PageLoadCompleteListener
-        self.extend(new PageLoadCompleteListener());
+        // implements PageLoadCompleteListener
+        self.implement(PageLoadCompleteListener);
 
         // set navigation
         self.navigation = navigation;

@@ -1,9 +1,14 @@
 /**
- * @extends Controller
- * @extends LoginResponseListener
- * @class {LoginController} LoginController
+ * LoginModel (or LoginController),
+ * you may consider this class as a Controller for 'Login Use Case'
+ * or an external 'Service' of a DDD bounded context or Anemic Domain Model application.
+ *
+ * @model 'Model' as in MVVM (Model-View-ViewModel) pattern, sometimes referred as 'Controller'
+ * @extends Model
+ * @implements LoginResponseListener
+ * @class {LoginModel} LoginModel
  */
-function LoginController() {
+function LoginModel() {
 
     //
     // Private and public field declarations
@@ -107,16 +112,29 @@ function LoginController() {
         xhr.send(model, listener);
     };
 
+    /**
+     * logout user
+     */
+    this.logout = function () {
+
+        // clear login form
+        this.loginViewModel.clearForm();
+
+        // remove login model from storage
+        this.storage.remove('LoginResponseModel');
+
+    };
+
     //
     // constructor
     //
     (function (self) {
 
-        // extends controller
-        self.extend(new Controller());
+        // extends model
+        self.extend(Model);
 
         // implement login response listener
-        self.extend(new LoginResponseListener());
+        self.implement(LoginResponseListener);
 
         // set the login service instance
         self.loginService = LoginService.getInstance();

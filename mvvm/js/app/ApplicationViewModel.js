@@ -1,4 +1,5 @@
 /**
+ * @viewModel 'ViewModel' as in MVVM (Model-View-ViewModel) pattern, handles bidirectional binding
  * Application View Model
  * @extends ViewModel
  * @class {ApplicationViewModel} ApplicationViewModel
@@ -14,7 +15,7 @@ function ApplicationViewModel() {
     //
 
     //
-    // i18n, bindings, actions and templates
+    // i18n, bindings, actions and views
     //
 
     //
@@ -22,8 +23,8 @@ function ApplicationViewModel() {
     //
     (function (self) {
 
-        // extends ViewModel
-        self.extend(new ViewModel(self));
+        // extends ViewModel class, 'self' is the constructor parameter of ViewModel, i.e. 'new ViewModel(self)'
+        self.extend(ViewModel, self, 1, 2, 3);
 
     })(this);
 
