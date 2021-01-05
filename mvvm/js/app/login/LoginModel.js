@@ -100,7 +100,8 @@ function LoginModel() {
         // create model
         var model = new XhrModel('/LightGap/mvvm/example/login-response.json');
         model.method = 'POST';
-        model.data = loginRequestModel;
+        model.headers['Content-Type'] = 'application/json';
+        model.data = JSON.stringify(loginRequestModel);
 
         // create handler
         var listener = new LoginListener(this);
