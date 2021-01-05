@@ -110,6 +110,8 @@ function XHR() {
                             }
                             // call the last lifecycle method
                             listener.requestFinishedResponseReady(req, response);
+                        } else {
+                            listener.error("the response is 'null'; either the request is not yet complete although the 'readyState' is 4, or the request was unsuccessful!");
                         }
                     } else {
                         listener.error("req is not defined!");
