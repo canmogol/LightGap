@@ -49,7 +49,7 @@ function PageLoadListener(internalLoadElementId, mapping, pageLoadCompleteListen
         // set container's content to response
         container.innerHTML = response;
 
-        // notify listener if avilable
+        // notify listener if available
         if (this.pageLoadCompleteListener !== null) {
             this.pageLoadCompleteListener.pageLoaded(this.mapping);
         }
