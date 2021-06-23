@@ -2,12 +2,12 @@
 // Menu Controller
 class MenuController extends BaseController {
 
-    #loginController;
+    __loginController;
 
     // constructor
     constructor() {
         super();
-        this.#loginController = new LoginController();
+        this.__loginController = new LoginController();
         console.debug("MenuController created.")
     }
 
@@ -19,7 +19,7 @@ class MenuController extends BaseController {
         // set listener for login button
         var screenLoginButton = document.getElementById("screenLoginButton");
         screenLoginButton.onclick = function () {
-            controller.#loginController.init();
+            controller.__loginController.init();
         };
     };
 

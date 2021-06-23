@@ -3,20 +3,20 @@
 class LoggedController extends BaseController {
 
     // private field
-    #mainController
+    __mainController
 
     // constructor
     constructor() {
         super();
         // initialize main controller
-        this.#mainController = MainController.getInstance();
+        this.__mainController = MainController.getInstance();
         console.debug("LoggedController created.")
     }
 
     // public method
     init() {
         // load page
-        this.#mainController.loadPage("loggedPage");
+        this.__mainController.loadPage("loggedPage");
 
         // show user info
         var userInfoSpan = document.getElementById("userInformation");

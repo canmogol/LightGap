@@ -3,42 +3,42 @@
 class LoginController extends BaseController {
 
     // private field
-    #mainController;
+    __mainController;
 
     // private field
-    #loggedController;
+    __loggedController;
 
     // constructor
     constructor() {
         super();
-        this.#mainController = MainController.getInstance();
-        this.#loggedController = new LoggedController();
+        this.__mainController = MainController.getInstance();
+        this.__loggedController = new LoggedController();
         console.debug("LoginController created.")
     }
 
     // public method
     init() {
         // load page
-        this.#mainController.loadPage("loginPage");
+        this.__mainController.loadPage("loginPage");
         // set up listeners
         var controller = this;
         var backButton = document.getElementById("backButtonLogin");
         backButton.onclick = function () {
-            controller.#mainController.goBack();
+            controller.__mainController.goBack();
         };
         var loginButton = document.getElementById("loginButton");
         loginButton.onclick = function () {
-            controller.#validate()
+            controller.__validate()
         };
     };
 
     // private method
-    #validate() {
+    __validate() {
         try {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
             if (username.trim().length > 0 && password.trim().length > 0) {
-                this.#doLogin(username, password);
+                this.__doLogin(username, password);
             } else {
                 alert(tr("username and password cannot be empty"));
             }
@@ -48,9 +48,9 @@ class LoginController extends BaseController {
     }
 
     // private method
-    #doLogin(username, password) {
+    __doLogin(username, password) {
         // create a request handler object
-        var requestHandler = this.#createRequestHandler(username, password);
+        var requestHandler = this.__createRequestHandler(username, password);
         // open a loading dialog, this will be removed if the user clicks button
         alert("Logging in", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
             requestHandler.cancelled = true;
@@ -60,7 +60,7 @@ class LoginController extends BaseController {
     }
 
     // private method
-    #createRequestHandler(username, password) {
+    __createRequestHandler(username, password) {
         // instance to the controller
         var controller = this;
         // create request handler object
@@ -96,7 +96,7 @@ class LoginController extends BaseController {
                     if (response.isLogged == "true") {
                         Store.putStorage("userInformation", response.user);
                         Store.putStorage("loginResponseMessage", response.message);
-                        controller.#loggedController.init();
+                        controller.__loggedController.init();
                     } else {
                         alert("could not login, message: " + response.message);
                     }

@@ -2,7 +2,8 @@
 // main controller
 class MainController extends BaseController {
 
-    static #MAIN_CONTROLLER_INSTANCE;
+    // private static field
+    static __MAIN_CONTROLLER_INSTANCE;
 
     // constructor
     constructor() {
@@ -12,20 +13,20 @@ class MainController extends BaseController {
 
     // public static method
     static getInstance() {
-        if (!MainController.#MAIN_CONTROLLER_INSTANCE) {
-            MainController.#MAIN_CONTROLLER_INSTANCE = new MainController();
+        if (!MainController.__MAIN_CONTROLLER_INSTANCE) {
+            MainController.__MAIN_CONTROLLER_INSTANCE = new MainController();
         }
-        return MainController.#MAIN_CONTROLLER_INSTANCE;
+        return MainController.__MAIN_CONTROLLER_INSTANCE;
     }
 
     // public method
     goBack() {
-        if (this.#getPageStack().length > 1) {
+        if (this.__getPageStack().length > 1) {
             // remove current page
-            var currentPage = this.#popFromPageStack();
+            var currentPage = this.__popFromPageStack();
             document.getElementById(currentPage).style.display = "none";
             // display previous page
-            var previousPage = this.#popFromPageStack();
+            var previousPage = this.__popFromPageStack();
             document.getElementById(previousPage).style.display = "block";
             // load previous page
             this.loadPage(previousPage);
@@ -37,21 +38,21 @@ class MainController extends BaseController {
     // public method
     loadPage(page) {
         try {
-            var pages = this.#getPageStack();
+            var pages = this.__getPageStack();
             if (pages.length > 0) {
                 var pageId = pages[pages.length - 1];
                 var pageContainer = document.getElementById(pageId);
                 pageContainer.style.display = "none";
             }
             document.getElementById(page).style.display = "block";
-            this.#addToPageStack(page);
+            this.__addToPageStack(page);
         } catch (e) {
             console.debug("exception occured while displaying new page, e: " + e, e);
         }
     }
 
     // private method
-    #getPageStack() {
+    __getPageStack() {
         if (Store.getStorage("pageStackString").trim().length > 0) {
             var pageStackString = Store.getStorage("pageStackString");
             return pageStackString.split(",")
@@ -61,7 +62,7 @@ class MainController extends BaseController {
     }
 
     // private method
-    #setPageStack(pageStack) {
+    __setPageStack(pageStack) {
         var pageStackString = "";
         for (var i = 0; i < pageStack.length; i++) {
             pageStackString += pageStack[i] + ",";
@@ -73,9 +74,9 @@ class MainController extends BaseController {
     }
 
     // private method
-    #addToPageStack(page) {
+    __addToPageStack(page) {
         if (page != null && page != undefined && page.trim().length > 0) {
-            var pageStack = this.#getPageStack();
+            var pageStack = this.__getPageStack();
             if (pageStack.length > 0) {
                 if (pageStack[pageStack.length - 1] != page) {
                     pageStack.push(page);
@@ -85,15 +86,15 @@ class MainController extends BaseController {
             } else {
                 pageStack.push(page);
             }
-            this.#setPageStack(pageStack);
+            this.__setPageStack(pageStack);
         }
     }
 
     // private method
-    #popFromPageStack() {
-        var pageStack = this.#getPageStack();
+    __popFromPageStack() {
+        var pageStack = this.__getPageStack();
         var poppedPage = pageStack.pop();
-        this.#setPageStack(pageStack);
+        this.__setPageStack(pageStack);
         return poppedPage;
     }
 

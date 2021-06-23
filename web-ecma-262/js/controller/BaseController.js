@@ -2,7 +2,7 @@
 // base class for all controllers
 class BaseController {
 
-    // constuctor
+    // constructor
     constructor() {
         console.debug("BaseController created.")
     }
