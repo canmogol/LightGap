@@ -22,7 +22,7 @@ Request = {
 
         var req = createXMLHTTPObject();
         if (req === false) {
-            handler.error("could not create request object for this browser");
+            handler.onError("could not create request object for this browser");
         } else {
             registerListener(req, handler);
             openConnection(req, handler);
@@ -46,16 +46,20 @@ Request = {
         // register the state change listener
         function registerListener(req, handler) {
             // for each state change, this method will be called
-            req.onreadystatechange = function () {
-                if (handler.cancelled === true) {
+            req.onreadystatechange = function (event) {
+                if (handler.cancel === true) {
                     try {
                         if (req.abort != null) {
                             req.abort();
                         }
+                        if (handler.aborted === undefined || handler.aborted === false) {
+                            handler.aborted = true;
+                            handler.onCancel(req);
+                        }
                     } catch (e) {
                         console.debug("exception while aborting the request, e: " + e);
+                        handler.onError(e);
                     }
-                    handler.onCancelled(req);
                 } else {
                     if (req.readyState == 0) {
                         handler.requestNotInitialized(req); //0	UNSENT	open() has not been called yet.
@@ -77,15 +81,15 @@ Request = {
                             } else if (req.responseXML != null && req.responseXML != undefined) {
                                 response = req.responseXML;
                             } else {
-                                handler.error("response and responseText are empty!");
+                                handler.onError("response and responseText are empty!");
                             }
                             if (response != null) {
                                 handler.requestFinishedResponseReady(req, response);
                             } else {
-                                handler.error("response is NULL");
+                                handler.onError("response is NULL");
                             }
                         } else {
-                            handler.error("'req' object is not defined!");
+                            handler.onError("'req' object is not defined!");
                         }
                     }
                 }
@@ -102,10 +106,10 @@ Request = {
                 try {
                     req.send(handler.data);
                 } catch (e) {
-                    handler.error(e);
+                    handler.onError(e);
                 }
             } else {
-                handler.error("could not send the request, it's already finished");
+                handler.onError("could not send the request, it's already finished");
             }
         }
 
