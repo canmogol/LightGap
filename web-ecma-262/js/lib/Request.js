@@ -21,10 +21,9 @@ Request = {
          */
 
         var req = createXMLHTTPObject();
-        if (!req) {
+        if (req === false) {
             handler.error("could not create request object for this browser");
         } else {
-            addHeaders(req, handler);
             registerListener(req, handler);
             openConnection(req, handler);
         }
@@ -48,7 +47,7 @@ Request = {
         function registerListener(req, handler) {
             // for each state change, this method will be called
             req.onreadystatechange = function () {
-                if (handler.cancelled == true) {
+                if (handler.cancelled === true) {
                     try {
                         if (req.abort != null) {
                             req.abort();
@@ -56,19 +55,17 @@ Request = {
                     } catch (e) {
                         console.debug("exception while aborting the request, e: " + e);
                     }
-                    if (!handler.onCancelled) {
-                        handler.onCancelled = true;
-                        handler.cancelled();
-                    }
+                    handler.onCancelled(req);
                 } else {
                     if (req.readyState == 0) {
-                        handler.requestNotInitialized(); //0	UNSENT	open() has not been called yet.
+                        handler.requestNotInitialized(req); //0	UNSENT	open() has not been called yet.
                     } else if (req.readyState == 1) {
-                        handler.serverConnectionEstablished(); //1	OPENED	send() has not been called yet.
+                        addHeaders(req, handler);
+                        handler.serverConnectionEstablished(req); //1	OPENED	send() has not been called yet.
                     } else if (req.readyState == 2) {
-                        handler.requestReceived(); //2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+                        handler.requestReceived(req); //2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
                     } else if (req.readyState == 3) {
-                        handler.processingRequest(); //3	LOADING	Downloading; responseText holds partial data.
+                        handler.processingRequest(req); //3	LOADING	Downloading; responseText holds partial data.
                     } else if (req.readyState == 4) {
                         // 4	DONE	The operation is complete.
                         if (req != null && req != undefined) {
@@ -77,23 +74,18 @@ Request = {
                                 response = req.response;
                             } else if (req.responseText != null && req.responseText != undefined) {
                                 response = req.responseText;
+                            } else if (req.responseXML != null && req.responseXML != undefined) {
+                                response = req.responseXML;
                             } else {
                                 handler.error("response and responseText are empty!");
                             }
                             if (response != null) {
-                                try {
-                                    if (!(req.response instanceof Object)) {
-                                        response = JSON.parse(response);
-                                    }
-                                } catch (e) {
-                                    console.log("exception occurred while returning response, e: " + e);
-                                }
                                 handler.requestFinishedResponseReady(req, response);
                             } else {
                                 handler.error("response is NULL");
                             }
                         } else {
-                            handler.error("req is not defined!");
+                            handler.error("'req' object is not defined!");
                         }
                     }
                 }
