@@ -53,7 +53,7 @@ class LoginController extends BaseController {
         var requestHandler = this.__createRequestHandler(username, password);
         // open a loading dialog, this will be removed if the user clicks button
         alert("Logging in", Alerts.LOADING_CIRCLE, function (buttonIndex, buttonText) {
-            requestHandler.cancelled = true;
+            requestHandler.cancel = true;
         }, "cancel", null);
         // send request
         Request.send(requestHandler);
@@ -68,13 +68,13 @@ class LoginController extends BaseController {
             url: Statics.SERVER_APP_URL + "/login",
             method: "GET",
             async: true,
-            cancelled: false,
+            cancel: false,
             headers: { "x-http-requester": "X212" },
             data: { "username": username, "password": password },
             onCancel: function (request) {
-                console.log("Request cancelled!");
+                console.log("Request cancelled!", request);
             },
-            error: function (e) {
+            onError: function (e) {
                 console.log("error: " + e, e)
             },
             requestNotInitialized: function (request) {
