@@ -71,26 +71,27 @@ class LoginController extends BaseController {
             cancelled: false,
             headers: { "x-http-requester": "X212" },
             data: { "username": username, "password": password },
-            onCancel: function () {
+            onCancel: function (request) {
                 console.log("Request cancelled!");
             },
             error: function (e) {
                 console.log("error: " + e, e)
             },
-            requestNotInitialized: function () {
+            requestNotInitialized: function (request) {
                 console.debug("requestNotInitialized")
             },
-            serverConnectionEstablished: function () {
+            serverConnectionEstablished: function (request) {
                 console.debug("serverConnectionEstablished")
             },
-            requestReceived: function () {
+            requestReceived: function (request) {
                 console.debug("requestReceived")
             },
-            processingRequest: function () {
+            processingRequest: function (request) {
                 console.debug("processingRequest")
             },
             requestFinishedResponseReady: function (request, response) {
                 console.debug("requestFinishedResponseReady");
+                response = JSON.parse(response);
                 Alerts.removeAllAlerts();
                 try {
                     if (response.isLogged == "true") {
