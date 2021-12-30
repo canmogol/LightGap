@@ -1,4 +1,4 @@
-from flask import Flask, request, send_from_directory, make_response, redirect
+from flask import Flask, Response, request, send_from_directory, make_response, redirect
 import time
 
 app = Flask(__name__, static_url_path='')
@@ -25,7 +25,7 @@ def login():
 @app.route("/login2")
 def login2():
     time.sleep(1)
-    return '{"isLogged":"true", "message": "Welcome", "user": "John Doe"}'
+    return Response('{"isLogged":"true", "message": "Welcome", "user": "John Doe"}', mimetype='application/json')
 
 @app.route('/js/<path:path>')
 def send_js(path):
